@@ -93,9 +93,9 @@
             label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             label1.Location = new Point(136, 52);
             label1.Name = "label1";
-            label1.Size = new Size(43, 17);
+            label1.Size = new Size(149, 17);
             label1.TabIndex = 5;
-            label1.Text = "label1";
+            label1.Text = "Реєстрація/Авторизація";
             // 
             // label2
             // 
