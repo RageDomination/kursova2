@@ -74,7 +74,7 @@ namespace курсова2
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Помилка при завантаженні інформації про користувача: " + ex.Message);
+                    MessageBox.Show("Помилка при завантаженні зображення: " + ex.Message);
                 }
             }
         }

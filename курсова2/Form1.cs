@@ -11,6 +11,7 @@ namespace курсова2
         public Form1()
         {
             InitializeComponent();
+            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
         }
 
         private void SwitchToRegistrationMode()
@@ -45,6 +46,13 @@ namespace курсова2
 
                     if (isRegistrationMode)
                     {
+
+                        if (password.Length < 3)
+                        {
+                            MessageBox.Show("Пароль повинен містити щонайменше 3 символи", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+
                         string checkUserQuery = "SELECT COUNT(*) FROM users WHERE login = @login";
                         MySqlCommand checkCmd = new MySqlCommand(checkUserQuery, conn);
                         checkCmd.Parameters.AddWithValue("@login", login);
@@ -112,6 +120,19 @@ namespace курсова2
             SwitchToLoginMode();
             linkLabel1.AutoSize = true;
             linkLabel2.AutoSize = true;
+            textBox2.PasswordChar = '*';
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                textBox2.PasswordChar = '\0';
+            }
+            else
+            {
+                textBox2.PasswordChar = '*';
+            }
         }
     }
 }

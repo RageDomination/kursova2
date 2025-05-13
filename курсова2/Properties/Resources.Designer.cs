@@ -59,5 +59,15 @@ namespace курсова2.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap free_icon_frame_565795 {
+            get {
+                object obj = ResourceManager.GetObject("free-icon-frame-565795", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

@@ -123,9 +123,9 @@
             checkBox1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             checkBox1.Location = new Point(84, 255);
             checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(134, 21);
+            checkBox1.Size = new Size(130, 21);
             checkBox1.TabIndex = 8;
-            checkBox1.Text = "Анонімний режим";
+            checkBox1.Text = "Показати пароль";
             checkBox1.UseVisualStyleBackColor = true;
             // 
             // Form1
