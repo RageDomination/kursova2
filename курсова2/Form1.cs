@@ -69,16 +69,18 @@ namespace курсова2
                     }
                     else
                     {
-                        string query = "SELECT COUNT(*) FROM users WHERE login = @login AND password = @password";
+                        string query = "SELECT user_id, login FROM users WHERE login = @login AND password = @password";
                         MySqlCommand cmd = new MySqlCommand(query, conn);
                         cmd.Parameters.AddWithValue("@login", login);
                         cmd.Parameters.AddWithValue("@password", password);
 
-                        int userCount = Convert.ToInt32(cmd.ExecuteScalar());
+                        MySqlDataReader reader = cmd.ExecuteReader();
 
-                        if (userCount > 0)
+                        if (reader.Read())
                         {
-                            Form2 form2 = new Form2();
+                            int userID = reader.GetInt32("user_id");
+                            string userLogin = reader.GetString("login");
+                            Form2 form2 = new Form2(userID, userLogin);
                             form2.Show();
                             this.Hide();
                         }
