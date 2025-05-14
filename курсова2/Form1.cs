@@ -46,7 +46,6 @@ namespace курсова2
 
                     if (isRegistrationMode)
                     {
-
                         if (password.Length < 3)
                         {
                             MessageBox.Show("Пароль повинен містити щонайменше 3 символи", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -64,14 +63,15 @@ namespace курсова2
                         }
                         else
                         {
-                            string insertQuery = "INSERT INTO users (login, password) VALUES (@login, @password)";
+                            // Додано вставку дати
+                            string insertQuery = "INSERT INTO users (login, password, registration_date) VALUES (@login, @password, @regDate)";
                             MySqlCommand insertCmd = new MySqlCommand(insertQuery, conn);
                             insertCmd.Parameters.AddWithValue("@login", login);
                             insertCmd.Parameters.AddWithValue("@password", password);
+                            insertCmd.Parameters.AddWithValue("@regDate", DateTime.Now);
                             insertCmd.ExecuteNonQuery();
 
                             MessageBox.Show("Реєстрація пройшла успішно!", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                             SwitchToLoginMode();
                         }
                     }

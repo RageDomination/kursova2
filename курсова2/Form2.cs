@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -46,7 +47,7 @@ namespace курсова2
 
         private void LoadUserInfo()
         {
-            string query = "SELECT login, profile_img FROM users WHERE user_id = @userID";
+            string query = "SELECT login, profile_img, registration_date FROM users WHERE user_id = @userID";
 
             using (MySqlConnection conn = Database.GetConnection())
             {
@@ -69,12 +70,22 @@ namespace курсова2
                                 pictureBox1.Image = Image.FromFile(profileImgPath);
                                 pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
                             }
+
+                            if (reader["registration_date"] != DBNull.Value)
+                            {
+                                DateTime regDate = Convert.ToDateTime(reader["registration_date"]);
+                                label4.Text = $"Registration date: {regDate.ToString("yyyy-MM-dd HH:mm:ss")}";
+                            }
+                            else
+                            {
+                                label4.Text = "Registration date: N/A";
+                            }
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Помилка при завантаженні зображення: " + ex.Message);
+                    MessageBox.Show("Помилка при завантаженні даних: " + ex.Message);
                 }
             }
         }

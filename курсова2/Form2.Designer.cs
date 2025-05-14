@@ -33,6 +33,7 @@
             pictureBox1 = new PictureBox();
             label2 = new Label();
             label3 = new Label();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -53,7 +54,7 @@
             pictureBox1.Location = new Point(329, 61);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(158, 107);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
@@ -77,11 +78,21 @@
             label3.TabIndex = 3;
             label3.Text = "UserID: ";
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(305, 210);
+            label4.Name = "label4";
+            label4.Size = new Size(199, 15);
+            label4.TabIndex = 4;
+            label4.Text = "Registration date: xxxx-xx-xx **:**:**";
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(pictureBox1);
@@ -100,5 +111,6 @@
         private PictureBox pictureBox1;
         private Label label2;
         private Label label3;
+        private Label label4;
     }
 }
