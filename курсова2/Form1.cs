@@ -11,9 +11,16 @@ namespace курсова2
         public Form1()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             checkBox1.CheckedChanged += checkBox1_CheckedChanged;
+            pictureBoxOff.Click += pictureBoxOff_Click;
         }
 
+        private void pictureBoxOff_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
         private void SwitchToRegistrationMode()
         {
             isRegistrationMode = true;
@@ -63,7 +70,6 @@ namespace курсова2
                         }
                         else
                         {
-                            // Додано вставку дати
                             string insertQuery = "INSERT INTO users (login, password, registration_date) VALUES (@login, @password, @regDate)";
                             MySqlCommand insertCmd = new MySqlCommand(insertQuery, conn);
                             insertCmd.Parameters.AddWithValue("@login", login);
@@ -88,9 +94,9 @@ namespace курсова2
                         {
                             int userID = reader.GetInt32("user_id");
                             string userLogin = reader.GetString("login");
+                            this.Hide();
                             Form2 form2 = new Form2(userID, userLogin);
                             form2.Show();
-                            this.Hide();
                         }
                         else
                         {

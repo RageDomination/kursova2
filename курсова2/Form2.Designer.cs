@@ -34,16 +34,32 @@
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
+            panel1 = new Panel();
+            pictureBox2 = new PictureBox();
+            label5 = new Label();
+            label6 = new Label();
+            textBox1 = new TextBox();
+            textBox2 = new TextBox();
+            textBox3 = new TextBox();
+            textBox4 = new TextBox();
+            label7 = new Label();
+            label8 = new Label();
+            label9 = new Label();
+            label10 = new Label();
+            buttonSave = new Button();
+            labelHidden = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(350, 32);
+            label1.Font = new Font("Arial", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(309, 57);
             label1.Name = "label1";
-            label1.Size = new Size(119, 17);
+            label1.Size = new Size(171, 22);
             label1.TabIndex = 0;
             label1.Text = "Особистий кабінет";
             // 
@@ -51,18 +67,19 @@
             // 
             pictureBox1.Cursor = Cursors.Hand;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(329, 61);
+            pictureBox1.Location = new Point(46, 144);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(158, 107);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click_1;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(429, 182);
+            label2.Location = new Point(147, 254);
             label2.Name = "label2";
             label2.Size = new Size(40, 17);
             label2.TabIndex = 2;
@@ -72,7 +89,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(329, 184);
+            label3.Location = new Point(46, 254);
             label3.Name = "label3";
             label3.Size = new Size(54, 17);
             label3.TabIndex = 3;
@@ -81,26 +98,171 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(305, 210);
+            label4.Location = new Point(28, 281);
             label4.Name = "label4";
             label4.Size = new Size(199, 15);
             label4.TabIndex = 4;
             label4.Text = "Registration date: xxxx-xx-xx **:**:**";
+            // 
+            // panel1
+            // 
+            panel1.BackColor = SystemColors.ActiveCaption;
+            panel1.Controls.Add(pictureBox2);
+            panel1.Location = new Point(-4, -3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(809, 47);
+            panel1.TabIndex = 10;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Cursor = Cursors.Hand;
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(753, 3);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(39, 41);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 11;
+            pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Location = new Point(46, 111);
+            label5.Name = "label5";
+            label5.Size = new Size(159, 21);
+            label5.TabIndex = 12;
+            label5.Text = "Основна iнформацiя";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.Location = new Point(576, 111);
+            label6.Name = "label6";
+            label6.Size = new Size(174, 21);
+            label6.TabIndex = 13;
+            label6.Text = "Додаткова iнформацiя";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(576, 160);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(174, 23);
+            textBox1.TabIndex = 14;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(576, 208);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(174, 23);
+            textBox2.TabIndex = 15;
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(576, 254);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(174, 23);
+            textBox3.TabIndex = 16;
+            // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(576, 302);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(174, 23);
+            textBox4.TabIndex = 17;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.Location = new Point(641, 140);
+            label7.Name = "label7";
+            label7.Size = new Size(30, 17);
+            label7.TabIndex = 18;
+            label7.Text = "Iм'я";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.Location = new Point(631, 186);
+            label8.Name = "label8";
+            label8.Size = new Size(66, 17);
+            label8.TabIndex = 19;
+            label8.Text = "Прізвище";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label9.Location = new Point(613, 234);
+            label9.Name = "label9";
+            label9.Size = new Size(109, 17);
+            label9.TabIndex = 20;
+            label9.Text = "Номер телефону";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label10.Location = new Point(641, 281);
+            label10.Name = "label10";
+            label10.Size = new Size(44, 17);
+            label10.TabIndex = 21;
+            label10.Text = "E-mail";
+            // 
+            // buttonSave
+            // 
+            buttonSave.Location = new Point(590, 341);
+            buttonSave.Name = "buttonSave";
+            buttonSave.Size = new Size(147, 29);
+            buttonSave.TabIndex = 22;
+            buttonSave.Text = "Зберегти змiни";
+            buttonSave.UseVisualStyleBackColor = true;
+            buttonSave.Click += buttonSave_Click;
+            // 
+            // labelHidden
+            // 
+            labelHidden.AutoSize = true;
+            labelHidden.Location = new Point(761, 437);
+            labelHidden.Name = "labelHidden";
+            labelHidden.Size = new Size(44, 15);
+            labelHidden.TabIndex = 23;
+            labelHidden.Text = "label11";
+            labelHidden.Visible = false;
             // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(labelHidden);
+            Controls.Add(buttonSave);
+            Controls.Add(label10);
+            Controls.Add(label9);
+            Controls.Add(label8);
+            Controls.Add(label7);
+            Controls.Add(textBox4);
+            Controls.Add(textBox3);
+            Controls.Add(textBox2);
+            Controls.Add(textBox1);
+            Controls.Add(label6);
+            Controls.Add(label5);
+            Controls.Add(panel1);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(pictureBox1);
             Controls.Add(label1);
             Name = "Form2";
-            Text = "Form2";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Особистий кабінет";
             Load += Form2_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -112,5 +274,19 @@
         private Label label2;
         private Label label3;
         private Label label4;
+        private Panel panel1;
+        private PictureBox pictureBox2;
+        private Label label5;
+        private Label label6;
+        private TextBox textBox1;
+        private TextBox textBox2;
+        private TextBox textBox3;
+        private TextBox textBox4;
+        private Label label7;
+        private Label label8;
+        private Label label9;
+        private Label label10;
+        private Button buttonSave;
+        private Label labelHidden;
     }
 }

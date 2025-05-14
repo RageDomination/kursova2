@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             button1 = new Button();
             textBox1 = new TextBox();
             textBox2 = new TextBox();
@@ -37,6 +38,10 @@
             label2 = new Label();
             label3 = new Label();
             checkBox1 = new CheckBox();
+            panel1 = new Panel();
+            pictureBoxOff = new PictureBox();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxOff).BeginInit();
             SuspendLayout();
             // 
             // button1
@@ -91,7 +96,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(102, 56);
+            label1.Location = new Point(103, 82);
             label1.Name = "label1";
             label1.Size = new Size(149, 17);
             label1.TabIndex = 5;
@@ -128,11 +133,32 @@
             checkBox1.Text = "Показати пароль";
             checkBox1.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            panel1.BackColor = SystemColors.ActiveCaption;
+            panel1.Controls.Add(pictureBoxOff);
+            panel1.Location = new Point(-5, -1);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(372, 43);
+            panel1.TabIndex = 9;
+            // 
+            // pictureBoxOff
+            // 
+            pictureBoxOff.Cursor = Cursors.Hand;
+            pictureBoxOff.Image = (Image)resources.GetObject("pictureBoxOff.Image");
+            pictureBoxOff.Location = new Point(309, 3);
+            pictureBoxOff.Name = "pictureBoxOff";
+            pictureBoxOff.Size = new Size(38, 37);
+            pictureBoxOff.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBoxOff.TabIndex = 12;
+            pictureBoxOff.TabStop = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(354, 450);
+            Controls.Add(panel1);
             Controls.Add(checkBox1);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -143,8 +169,11 @@
             Controls.Add(textBox1);
             Controls.Add(button1);
             Name = "Form1";
-            Text = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Реєстрація та авторизація користувачів";
             Load += Form1_Load;
+            panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBoxOff).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -160,5 +189,7 @@
         private Label label2;
         private Label label3;
         private CheckBox checkBox1;
+        private Panel panel1;
+        private PictureBox pictureBoxOff;
     }
 }

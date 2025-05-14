@@ -15,7 +15,10 @@ namespace курсова2
         public Form2(int userID, string login)
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             pictureBox1.Click += pictureBox1_Click;
+            pictureBox2.Click += pictureBox2_Click;
             currentUserID = userID;
             currentLogin = login;
             LoadUserInfo();
@@ -24,6 +27,7 @@ namespace курсова2
         private void Form2_Load(object sender, EventArgs e)
         {
             label3.Text = $"UserID: {currentUserID}";
+            this.ActiveControl = labelHidden;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -47,7 +51,7 @@ namespace курсова2
 
         private void LoadUserInfo()
         {
-            string query = "SELECT login, profile_img, registration_date FROM users WHERE user_id = @userID";
+            string query = "SELECT login, profile_img, registration_date, name, surname, phone_number, email FROM users WHERE user_id = @userID";
 
             using (MySqlConnection conn = Database.GetConnection())
             {
@@ -74,12 +78,17 @@ namespace курсова2
                             if (reader["registration_date"] != DBNull.Value)
                             {
                                 DateTime regDate = Convert.ToDateTime(reader["registration_date"]);
-                                label4.Text = $"Registration date: {regDate.ToString("yyyy-MM-dd HH:mm:ss")}";
+                                label4.Text = $"Registration date: {regDate:yyyy-MM-dd HH:mm:ss}";
                             }
                             else
                             {
-                                label4.Text = "Registration date: N/A";
+                                label4.Text = "Registration date: xxxx-xx-xx **:**:**";
                             }
+
+                            textBox1.Text = reader["name"]?.ToString() ?? "";
+                            textBox2.Text = reader["surname"]?.ToString() ?? "";
+                            textBox3.Text = reader["phone_number"]?.ToString() ?? "";
+                            textBox4.Text = reader["email"]?.ToString() ?? "";
                         }
                     }
                 }
@@ -89,6 +98,7 @@ namespace курсова2
                 }
             }
         }
+
 
         private void SaveImagePathToDatabase(string imagePath)
         {
@@ -107,6 +117,47 @@ namespace курсова2
                 catch (Exception ex)
                 {
                     MessageBox.Show("Помилка при збереженні зображення: " + ex.Message);
+                }
+            }
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            string name = textBox1.Text;
+            string surname = textBox2.Text;
+            string phoneNumber = textBox3.Text;
+            string email = textBox4.Text;
+
+            string query = "UPDATE users SET name = @name, surname = @surname, phone_number = @phone, email = @mail WHERE user_id = @userID";
+
+            using (MySqlConnection conn = Database.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@name", name);
+                    cmd.Parameters.AddWithValue("@surname", surname);
+                    cmd.Parameters.AddWithValue("@phone", phoneNumber);
+                    cmd.Parameters.AddWithValue("@mail", email);
+                    cmd.Parameters.AddWithValue("@userID", currentUserID);
+
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Дані успішно оновлено!", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Помилка при збереженні даних: " + ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
