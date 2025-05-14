@@ -83,6 +83,17 @@ namespace курсова2
                     }
                     else
                     {
+                        string checkLoginQuery = "SELECT COUNT(*) FROM users WHERE login = @login";
+                        MySqlCommand checkLoginCmd = new MySqlCommand(checkLoginQuery, conn);
+                        checkLoginCmd.Parameters.AddWithValue("@login", login);
+                        int loginExists = Convert.ToInt32(checkLoginCmd.ExecuteScalar());
+
+                        if (loginExists == 0)
+                        {
+                            MessageBox.Show("Користувача з таким нікнеймом не існує. Пройдіть етап реєстрації.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+
                         string query = "SELECT user_id, login FROM users WHERE login = @login AND password = @password";
                         MySqlCommand cmd = new MySqlCommand(query, conn);
                         cmd.Parameters.AddWithValue("@login", login);
@@ -100,7 +111,7 @@ namespace курсова2
                         }
                         else
                         {
-                            MessageBox.Show("Невірний логін або пароль", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Невірний пароль", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
