@@ -117,9 +117,9 @@
             // 
             pictureBox2.Cursor = Cursors.Hand;
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(753, 3);
+            pictureBox2.Location = new Point(745, 3);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(39, 41);
+            pictureBox2.Size = new Size(38, 41);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 11;
             pictureBox2.TabStop = false;
@@ -139,7 +139,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(576, 111);
+            label6.Location = new Point(483, 111);
             label6.Name = "label6";
             label6.Size = new Size(174, 21);
             label6.TabIndex = 13;
@@ -147,28 +147,28 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(576, 160);
+            textBox1.Location = new Point(387, 162);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(174, 23);
             textBox1.TabIndex = 14;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(576, 208);
+            textBox2.Location = new Point(387, 210);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(174, 23);
             textBox2.TabIndex = 15;
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(576, 254);
+            textBox3.Location = new Point(590, 162);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(174, 23);
             textBox3.TabIndex = 16;
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(576, 302);
+            textBox4.Location = new Point(590, 210);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(174, 23);
             textBox4.TabIndex = 17;
@@ -177,7 +177,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(641, 140);
+            label7.Location = new Point(452, 142);
             label7.Name = "label7";
             label7.Size = new Size(30, 17);
             label7.TabIndex = 18;
@@ -187,7 +187,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(631, 186);
+            label8.Location = new Point(442, 188);
             label8.Name = "label8";
             label8.Size = new Size(66, 17);
             label8.TabIndex = 19;
@@ -197,7 +197,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label9.Location = new Point(613, 234);
+            label9.Location = new Point(627, 142);
             label9.Name = "label9";
             label9.Size = new Size(109, 17);
             label9.TabIndex = 20;
@@ -207,7 +207,7 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label10.Location = new Point(641, 281);
+            label10.Location = new Point(655, 189);
             label10.Name = "label10";
             label10.Size = new Size(44, 17);
             label10.TabIndex = 21;
@@ -215,7 +215,7 @@
             // 
             // buttonSave
             // 
-            buttonSave.Location = new Point(590, 341);
+            buttonSave.Location = new Point(500, 254);
             buttonSave.Name = "buttonSave";
             buttonSave.Size = new Size(147, 29);
             buttonSave.TabIndex = 22;
@@ -226,7 +226,7 @@
             // labelHidden
             // 
             labelHidden.AutoSize = true;
-            labelHidden.Location = new Point(761, 437);
+            labelHidden.Location = new Point(779, 439);
             labelHidden.Name = "labelHidden";
             labelHidden.Size = new Size(44, 15);
             labelHidden.TabIndex = 23;
