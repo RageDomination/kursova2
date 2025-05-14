@@ -21,6 +21,7 @@ namespace курсова2
             pictureBox2.Click += pictureBox2_Click;
             currentUserID = userID;
             currentLogin = login;
+            this.buttonSave2.Click += new System.EventHandler(this.buttonSave2_Click);
             LoadUserInfo();
         }
 
@@ -177,6 +178,52 @@ namespace курсова2
                 catch (Exception ex)
                 {
                     MessageBox.Show("Помилка при збереженні даних: " + ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+        private void buttonSave2_Click(object sender, EventArgs e)
+        {
+            string oldPassword = textBox5.Text;
+            string newPassword = textBox6.Text;
+
+            if (string.IsNullOrWhiteSpace(oldPassword) || string.IsNullOrWhiteSpace(newPassword))
+            {
+                MessageBox.Show("Будь ласка, заповніть обидва поля для зміни паролю.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string selectQuery = "SELECT password FROM users WHERE user_id = @userID";
+            string updateQuery = "UPDATE users SET password = @newPassword WHERE user_id = @userID";
+
+            using (MySqlConnection conn = Database.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+
+                    MySqlCommand selectCmd = new MySqlCommand(selectQuery, conn);
+                    selectCmd.Parameters.AddWithValue("@userID", currentUserID);
+
+                    string currentPassword = selectCmd.ExecuteScalar()?.ToString();
+
+                    if (currentPassword != oldPassword)
+                    {
+                        MessageBox.Show("Старий пароль введено неправильно.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    MySqlCommand updateCmd = new MySqlCommand(updateQuery, conn);
+                    updateCmd.Parameters.AddWithValue("@newPassword", newPassword);
+                    updateCmd.Parameters.AddWithValue("@userID", currentUserID);
+                    updateCmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Пароль успішно змінено!", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    textBox5.Clear();
+                    textBox6.Clear();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Помилка при зміні паролю: " + ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

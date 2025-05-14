@@ -48,6 +48,12 @@
             label10 = new Label();
             buttonSave = new Button();
             labelHidden = new Label();
+            label11 = new Label();
+            textBox5 = new TextBox();
+            textBox6 = new TextBox();
+            label12 = new Label();
+            label13 = new Label();
+            buttonSave2 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -139,7 +145,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(483, 111);
+            label6.Location = new Point(483, 114);
             label6.Name = "label6";
             label6.Size = new Size(174, 21);
             label6.TabIndex = 13;
@@ -147,28 +153,28 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(387, 162);
+            textBox1.Location = new Point(387, 155);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(174, 23);
             textBox1.TabIndex = 14;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(387, 210);
+            textBox2.Location = new Point(387, 203);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(174, 23);
             textBox2.TabIndex = 15;
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(590, 162);
+            textBox3.Location = new Point(590, 155);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(174, 23);
             textBox3.TabIndex = 16;
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(590, 210);
+            textBox4.Location = new Point(590, 203);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(174, 23);
             textBox4.TabIndex = 17;
@@ -177,7 +183,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(452, 142);
+            label7.Location = new Point(452, 135);
             label7.Name = "label7";
             label7.Size = new Size(30, 17);
             label7.TabIndex = 18;
@@ -187,7 +193,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(442, 188);
+            label8.Location = new Point(442, 181);
             label8.Name = "label8";
             label8.Size = new Size(66, 17);
             label8.TabIndex = 19;
@@ -197,7 +203,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label9.Location = new Point(627, 142);
+            label9.Location = new Point(627, 135);
             label9.Name = "label9";
             label9.Size = new Size(109, 17);
             label9.TabIndex = 20;
@@ -207,7 +213,7 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label10.Location = new Point(655, 189);
+            label10.Location = new Point(655, 182);
             label10.Name = "label10";
             label10.Size = new Size(44, 17);
             label10.TabIndex = 21;
@@ -215,7 +221,7 @@
             // 
             // buttonSave
             // 
-            buttonSave.Location = new Point(500, 254);
+            buttonSave.Location = new Point(500, 242);
             buttonSave.Name = "buttonSave";
             buttonSave.Size = new Size(147, 29);
             buttonSave.TabIndex = 22;
@@ -233,11 +239,70 @@
             labelHidden.Text = "label11";
             labelHidden.Visible = false;
             // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label11.Location = new Point(523, 302);
+            label11.Name = "label11";
+            label11.Size = new Size(106, 21);
+            label11.TabIndex = 24;
+            label11.Text = "Зміна пароля";
+            // 
+            // textBox5
+            // 
+            textBox5.Location = new Point(387, 343);
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(174, 23);
+            textBox5.TabIndex = 25;
+            // 
+            // textBox6
+            // 
+            textBox6.Location = new Point(590, 343);
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(174, 23);
+            textBox6.TabIndex = 26;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label12.Location = new Point(422, 323);
+            label12.Name = "label12";
+            label12.Size = new Size(114, 17);
+            label12.TabIndex = 27;
+            label12.Text = "Поточний пароль";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label13.Location = new Point(627, 323);
+            label13.Name = "label13";
+            label13.Size = new Size(102, 17);
+            label13.TabIndex = 28;
+            label13.Text = "  Новий пароль";
+            // 
+            // buttonSave2
+            // 
+            buttonSave2.Location = new Point(500, 382);
+            buttonSave2.Name = "buttonSave2";
+            buttonSave2.Size = new Size(147, 29);
+            buttonSave2.TabIndex = 29;
+            buttonSave2.Text = "Зберегти змiни";
+            buttonSave2.UseVisualStyleBackColor = true;
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 445);
+            Controls.Add(buttonSave2);
+            Controls.Add(label13);
+            Controls.Add(label12);
+            Controls.Add(textBox6);
+            Controls.Add(textBox5);
+            Controls.Add(label11);
             Controls.Add(labelHidden);
             Controls.Add(buttonSave);
             Controls.Add(label10);
@@ -288,5 +353,11 @@
         private Label label10;
         private Button buttonSave;
         private Label labelHidden;
+        private Label label11;
+        private TextBox textBox5;
+        private TextBox textBox6;
+        private Label label12;
+        private Label label13;
+        private Button buttonSave2;
     }
 }
