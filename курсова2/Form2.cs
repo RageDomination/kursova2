@@ -138,21 +138,40 @@ namespace курсова2
             string phoneNumber = textBox3.Text;
             string email = textBox4.Text;
 
-            string query = "UPDATE users SET name = @name, surname = @surname, phone_number = @phone, email = @mail WHERE user_id = @userID";
+            string selectQuery = "SELECT name, surname, phone_number, email FROM users WHERE user_id = @userID";
+            string updateQuery = "UPDATE users SET name = @name, surname = @surname, phone_number = @phone, email = @mail WHERE user_id = @userID";
 
             using (MySqlConnection conn = Database.GetConnection())
             {
                 try
                 {
                     conn.Open();
-                    MySqlCommand cmd = new MySqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@name", name);
-                    cmd.Parameters.AddWithValue("@surname", surname);
-                    cmd.Parameters.AddWithValue("@phone", phoneNumber);
-                    cmd.Parameters.AddWithValue("@mail", email);
-                    cmd.Parameters.AddWithValue("@userID", currentUserID);
+                    MySqlCommand selectCmd = new MySqlCommand(selectQuery, conn);
+                    selectCmd.Parameters.AddWithValue("@userID", currentUserID);
 
-                    cmd.ExecuteNonQuery();
+                    using (MySqlDataReader reader = selectCmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            string currentName = reader["name"]?.ToString() ?? "";
+                            string currentSurname = reader["surname"]?.ToString() ?? "";
+                            string currentPhone = reader["phone_number"]?.ToString() ?? "";
+                            string currentEmail = reader["email"]?.ToString() ?? "";
+                            if (name == currentName && surname == currentSurname && phoneNumber == currentPhone && email == currentEmail)
+                            {
+                                MessageBox.Show("Жодних змін не було внесено.", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
+                            }
+                        }
+                    }
+                    MySqlCommand updateCmd = new MySqlCommand(updateQuery, conn);
+                    updateCmd.Parameters.AddWithValue("@name", name);
+                    updateCmd.Parameters.AddWithValue("@surname", surname);
+                    updateCmd.Parameters.AddWithValue("@phone", phoneNumber);
+                    updateCmd.Parameters.AddWithValue("@mail", email);
+                    updateCmd.Parameters.AddWithValue("@userID", currentUserID);
+
+                    updateCmd.ExecuteNonQuery();
                     MessageBox.Show("Дані успішно оновлено!", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
@@ -161,5 +180,6 @@ namespace курсова2
                 }
             }
         }
+
     }
 }
