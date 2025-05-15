@@ -32,6 +32,7 @@
             button2 = new Button();
             button1 = new Button();
             labelHidden = new Label();
+            flowLayoutPanel1 = new FlowLayoutPanel();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -40,9 +41,9 @@
             panel1.BackColor = SystemColors.ActiveCaption;
             panel1.Controls.Add(button2);
             panel1.Controls.Add(button1);
-            panel1.Location = new Point(0, -3);
+            panel1.Location = new Point(-1, -3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(818, 47);
+            panel1.Size = new Size(806, 47);
             panel1.TabIndex = 11;
             // 
             // button2
@@ -73,11 +74,21 @@
             labelHidden.Text = "label11";
             labelHidden.Visible = false;
             // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.AutoScroll = true;
+            flowLayoutPanel1.Location = new Point(-1, 76);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(806, 260);
+            flowLayoutPanel1.TabIndex = 25;
+            flowLayoutPanel1.WrapContents = false;
+            // 
             // Form3
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(flowLayoutPanel1);
             Controls.Add(labelHidden);
             Controls.Add(panel1);
             Name = "Form3";
@@ -94,5 +105,6 @@
         private Button button2;
         private Button button1;
         private Label labelHidden;
+        private FlowLayoutPanel flowLayoutPanel1;
     }
 }
