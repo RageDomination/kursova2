@@ -2,6 +2,8 @@
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using Microsoft.VisualBasic.ApplicationServices;
+using Microsoft.VisualBasic.Logging;
 using MySql.Data.MySqlClient;
 
 namespace курсова2
@@ -19,9 +21,12 @@ namespace курсова2
             this.MaximizeBox = false;
             pictureBox1.Click += pictureBox1_Click;
             pictureBox2.Click += pictureBox2_Click;
-            currentUserID = userID;
-            currentLogin = login;
+            tabPage1.Text = "Історія замовлень";
+            tabPage2.Text = "Залишені коментарі";
+            this.currentUserID = userID;
+            this.currentLogin = login;
             this.buttonSave2.Click += new System.EventHandler(this.buttonSave2_Click);
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             LoadUserInfo();
         }
 
@@ -227,6 +232,12 @@ namespace курсова2
                 }
             }
         }
-
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form3 form3 = new Form3(currentUserID, currentLogin);
+            form3.FormClosed += (s, args) => this.Show();
+            this.Hide();
+            form3.Show();
+        }
     }
 }

@@ -35,6 +35,8 @@
             label3 = new Label();
             label4 = new Label();
             panel1 = new Panel();
+            button2 = new Button();
+            button1 = new Button();
             pictureBox2 = new PictureBox();
             label5 = new Label();
             label6 = new Label();
@@ -54,9 +56,13 @@
             label12 = new Label();
             label13 = new Label();
             buttonSave2 = new Button();
+            tabControl1 = new TabControl();
+            tabPage1 = new TabPage();
+            tabPage2 = new TabPage();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            tabControl1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -113,19 +119,39 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.ActiveCaption;
+            panel1.Controls.Add(button2);
+            panel1.Controls.Add(button1);
             panel1.Controls.Add(pictureBox2);
             panel1.Location = new Point(-4, -3);
             panel1.Name = "panel1";
             panel1.Size = new Size(809, 47);
             panel1.TabIndex = 10;
             // 
+            // button2
+            // 
+            button2.Location = new Point(183, 3);
+            button2.Name = "button2";
+            button2.Size = new Size(127, 44);
+            button2.TabIndex = 13;
+            button2.Text = "Замовлення";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(66, 3);
+            button1.Name = "button1";
+            button1.Size = new Size(125, 44);
+            button1.TabIndex = 12;
+            button1.Text = "Кабiнет";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // pictureBox2
             // 
             pictureBox2.Cursor = Cursors.Hand;
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(745, 3);
+            pictureBox2.Location = new Point(743, 6);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(38, 41);
+            pictureBox2.Size = new Size(38, 38);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 11;
             pictureBox2.TabStop = false;
@@ -292,11 +318,42 @@
             buttonSave2.Text = "Зберегти змiни";
             buttonSave2.UseVisualStyleBackColor = true;
             // 
+            // tabControl1
+            // 
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Location = new Point(28, 302);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(282, 131);
+            tabControl1.TabIndex = 30;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(274, 103);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "tabPage1";
+            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            tabPage2.Location = new Point(4, 24);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(274, 103);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "tabPage2";
+            tabPage2.UseVisualStyleBackColor = true;
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 445);
+            Controls.Add(tabControl1);
             Controls.Add(buttonSave2);
             Controls.Add(label13);
             Controls.Add(label12);
@@ -328,6 +385,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            tabControl1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -359,5 +417,10 @@
         private Label label12;
         private Label label13;
         private Button buttonSave2;
+        private TabControl tabControl1;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
+        private Button button2;
+        private Button button1;
     }
 }
