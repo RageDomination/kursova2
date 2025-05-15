@@ -12,34 +12,31 @@ namespace курсова2
         private int userID;
         private string login;
 
-        // Добавим словарь с новыми блюдами (ID начинается с 1000, чтобы не пересекаться с базой)
         private readonly Dictionary<int, (string title, string description, int price)> additionalDishes = new()
         {
-            {1000, ("Паста Карбонара", "Кремова паста з беконом і сиром Пармезан", 120)},
-            {1001, ("Лазанья Болоньєзе", "Шарувата італійська лазанья з м’ясним соусом", 140)},
-            {1002, ("Ризотто з грибами", "Ароматне рисове ризотто з білими грибами", 130)},
-            {1003, ("Спагеті з морепродуктами", "Спагеті з міксом морепродуктів у томатному соусі", 160)},
-            {1004, ("Піцца Маргарита", "Класична піцца з томатним соусом, моцарелою і базиліком", 110)},
-            {1005, ("Піцца Капрічоза", "Піцца з шинкою, грибами, артишоками і оливками", 150)},
-            {1006, ("Каннеллоні з рікотою і шпинатом", "Трубочки з пасти, фаршировані сиром і шпинатом", 135)},
-            {1007, ("Оссо буко з полентою", "Тушкована теляча голяшка з кукурудзяною кашею", 190)},
-            {1008, ("Салат Капрезе", "Помідори, моцарела і базилік з оливковою олією", 90)},
-            {1009, ("Фокачча з розмарином", "Свіжа італійська булочка з розмарином і сіллю", 70)},
-            {1010, ("Тірамісу", "Класичний італійський десерт з маскарпоне і кавою", 85)},
-
-            {1011, ("Панна Котта з полуничним соусом", "Ніжний вершковий десерт з ягідним топінгом", 80)},
-
-            {1012, ("Біг Мак", "Класичний бургер з двома котлетами і спеціальним соусом", 95)},
-            {1013, ("Чізбургер", "Бургер з сиром чеддер і маринованими огірками", 70)},
-            {1014, ("Дабл Чізбургер", "Подвійний чізбургер для справжніх гурманів", 110)},
-            {1015, ("Філе-О-Фіш", "Рибний бургер з хрусткою котлетою і соусом тартар", 85)},
-            {1016, ("Маффін з яйцем і беконом", "Смачний маффін з яйцем, беконом і сиром", 60)},
-            {1017, ("Нагетси курячі", "Хрусткі курячі нагетси з соусом", 70)},
-            {1018, ("Картопля фрі", "Класична смажена картопля", 50)},
-            {1019, ("Макфлурі з Oreo", "Морозиво з шоколадним печивом Oreo", 55)},
-            {1020, ("Чікенбургер", "Бургер з курячою котлетою і свіжими овочами", 80)},
-            {1021, ("Апельсиновий сік", "Свіжовижатий апельсиновий сік", 40)},
-            {1022, ("Кока-Кола", "Освіжаючий газований напій", 35)},
+            {11, ("Паста Карбонара", "Кремова паста з беконом і сиром Пармезан", 120)},
+            {12, ("Лазанья Болоньєзе", "Шарувата італійська лазанья з м’ясним соусом", 140)},
+            {13, ("Ризотто з грибами", "Ароматне рисове ризотто з білими грибами", 130)},
+            {14, ("Спагеті з морепродуктами", "Спагеті з міксом морепродуктів у томатному соусі", 160)},
+            {15, ("Піцца Маргарита", "Класична піцца з томатним соусом, моцарелою і базиліком", 110)},
+            {16, ("Піцца Капрічоза", "Піцца з шинкою, грибами, артишоками і оливками", 150)},
+            {17, ("Каннеллоні з рікотою і шпинатом", "Трубочки з пасти, фаршировані сиром і шпинатом", 135)},
+            {18, ("Оссо буко з полентою", "Тушкована теляча голяшка з кукурудзяною кашею", 190)},
+            {19, ("Салат Капрезе", "Помідори, моцарела і базилік з оливковою олією", 90)},
+            {20, ("Фокачча з розмарином", "Свіжа італійська булочка з розмарином і сіллю", 70)},
+            {21, ("Тірамісу", "Класичний італійський десерт з маскарпоне і кавою", 85)},
+            {22, ("Панна Котта з полуничним соусом", "Ніжний вершковий десерт з ягідним топінгом", 80)},
+            {23, ("Біг Мак", "Класичний бургер з двома котлетами і спеціальним соусом", 95)},
+            {25, ("Чізбургер", "Бургер з сиром чеддер і маринованими огірками", 70)},
+            {26, ("Дабл Чізбургер", "Подвійний чізбургер для справжніх гурманів", 110)},
+            {27, ("Філе-О-Фіш", "Рибний бургер з хрусткою котлетою і соусом тартар", 85)},
+            {28, ("Маффін з яйцем і беконом", "Смачний маффін з яйцем, беконом і сиром", 60)},
+            {29, ("Нагетси курячі", "Хрусткі курячі нагетси з соусом", 70)},
+            {30, ("Картопля фрі", "Класична смажена картопля", 50)},
+            {31, ("Макфлурі з Oreo", "Морозиво з шоколадним печивом Oreo", 55)},
+            {32, ("Чікенбургер", "Бургер з курячою котлетою і свіжими овочами", 80)},
+            {33, ("Апельсиновий сік", "Свіжовижатий апельсиновий сік", 40)},
+            {34, ("Кока-Кола", "Освіжаючий газований напій", 35)},
         };
 
         public Form3(int userID, string login)
@@ -60,18 +57,22 @@ namespace курсова2
 
             flowLayoutPanel1.Controls.Clear();
 
-            // Сначала загрузим блюда из базы данных
             using (var connection = Database.GetConnection())
             {
                 connection.Open();
 
+                // 1) Отримуємо існуючі страви з бази
                 string query = "SELECT dish_id, dish_name, price, description, image FROM dishes ORDER BY dish_id";
+                HashSet<int> existingDishIds = new HashSet<int>();
+
                 using (var cmd = new MySqlCommand(query, connection))
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         int dishId = reader.GetInt32("dish_id");
+                        existingDishIds.Add(dishId);
+
                         string title = reader.GetString("dish_name");
                         int priceValue = reader.GetInt32("price");
                         string price = $"Ціна: {priceValue} грн";
@@ -98,20 +99,43 @@ namespace курсова2
                         flowLayoutPanel1.Controls.Add(card);
                     }
                 }
-            }
 
-            // Затем добавим новые блюда из словаря
-            foreach (var kvp in additionalDishes)
-            {
-                int dishId = kvp.Key;
-                string title = kvp.Value.title;
-                int priceValue = kvp.Value.price;
-                string price = $"Ціна: {priceValue} грн";
-                string description = kvp.Value.description;
-                Image dishImage = null; // Для новых пока без картинки
+                // 2) Перевіряємо new dishes (additionalDishes), які відсутні у базі, і додаємо їх
+                foreach (var kvp in additionalDishes)
+                {
+                    int dishId = kvp.Key;
+                    if (!existingDishIds.Contains(dishId))
+                    {
+                        string title = kvp.Value.title;
+                        string description = kvp.Value.description;
+                        int priceValue = kvp.Value.price;
 
-                var card = CreateCard(dishId, title, price, description, dishImage);
-                flowLayoutPanel1.Controls.Add(card);
+                        string insertQuery = @"INSERT INTO dishes (dish_id, dish_name, price, description) VALUES (@dishId, @dishName, @price, @description)";
+                        using (var insertCmd = new MySqlCommand(insertQuery, connection))
+                        {
+                            insertCmd.Parameters.AddWithValue("@dishId", dishId);
+                            insertCmd.Parameters.AddWithValue("@dishName", title);
+                            insertCmd.Parameters.AddWithValue("@price", priceValue);
+                            insertCmd.Parameters.AddWithValue("@description", description);
+                            insertCmd.ExecuteNonQuery();
+                        }
+
+                        // Додаємо нову карточку в UI після додавання до бази
+                        string priceText = $"Ціна: {priceValue} грн";
+                        var card = CreateCard(dishId, title, priceText, description, null);
+                        flowLayoutPanel1.Controls.Add(card);
+                    }
+                    else
+                    {
+                        // Якщо страва вже є, додамо її до UI, щоб всі були видимі
+                        string title = kvp.Value.title;
+                        string description = kvp.Value.description;
+                        int priceValue = kvp.Value.price;
+                        string price = $"Ціна: {priceValue} грн";
+                        var card = CreateCard(dishId, title, price, description, null);
+                        flowLayoutPanel1.Controls.Add(card);
+                    }
+                }
             }
         }
 

@@ -50,7 +50,7 @@
             panel1.Controls.Add(button1);
             panel1.Location = new Point(-1, -3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(806, 47);
+            panel1.Size = new Size(926, 47);
             panel1.TabIndex = 11;
             // 
             // flowLayoutPanel2
@@ -63,7 +63,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(745, 9);
+            pictureBox1.Location = new Point(869, 14);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(44, 30);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -102,7 +102,7 @@
             // 
             flowLayoutPanel1.Location = new Point(-1, 76);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(806, 260);
+            flowLayoutPanel1.Size = new Size(926, 260);
             flowLayoutPanel1.TabIndex = 25;
             flowLayoutPanel1.WrapContents = false;
             // 
@@ -110,17 +110,17 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(-1, 48);
+            label1.Location = new Point(339, 47);
             label1.Name = "label1";
-            label1.Size = new Size(265, 25);
+            label1.Size = new Size(263, 25);
             label1.TabIndex = 27;
-            label1.Text = "Меню японського ресторану";
+            label1.Text = "Сформуйте своє замовлення";
             // 
             // Form3
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(804, 448);
+            ClientSize = new Size(924, 420);
             Controls.Add(label1);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(labelHidden);
