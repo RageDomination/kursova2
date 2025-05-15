@@ -29,51 +29,85 @@ namespace курсова2
 
             flowLayoutPanel1.Controls.Clear();
 
-            var dishes = new[]
+            using (var connection = Database.GetConnection())
             {
-        new { Title = "Суші Мікс", Price = "Ціна: 250 грн", Description = "Асорті свіжих суші з лососем, тунцем і креветками" },
-        new { Title = "Рамен Тонкоцу", Price = "Ціна: 180 грн", Description = "Насичений бульйон з свининою, локшиною та овочами" },
-        new { Title = "Темпура", Price = "Ціна: 200 грн", Description = "Хрусткі смажені овочі та морепродукти у легкому клярі" },
-        new { Title = "Якитори", Price = "Ціна: 150 грн", Description = "Шашлички з курки, мариновані в соусі теріякі" },
-        new { Title = "Унагі Дон", Price = "Ціна: 300 грн", Description = "Рис з смаженим вугрем у солодкому соусі" },
-        new { Title = "Тонкацу", Price = "Ціна: 220 грн", Description = "Хрустка панірована свинина, смажена до золотистої скоринки" },
-        new { Title = "Гьоза", Price = "Ціна: 140 грн", Description = "Парові або смажені японські пельмені з м’ясом" },
-        new { Title = "Місо Суп", Price = "Ціна: 90 грн", Description = "Класичний суп з місо пастою, тофу та водоростями" },
-        new { Title = "Сашимі", Price = "Ціна: 280 грн", Description = "Тонко нарізані свіжі шматочки сирої риби" },
-        new { Title = "Оякодон", Price = "Ціна: 160 грн", Description = "Рис з куркою і яйцем у ніжному соусі" }
-    };
+                connection.Open();
 
-            for (int i = 0; i < dishes.Length; i++)
-            {
-                int dishId = i + 1;
-                string title = dishes[i].Title;
-                string price = dishes[i].Price;
-                string description = dishes[i].Description;
-                Image dishImage = null;
+                string query = "SELECT dish_id, dish_name, price, description, image FROM dishes ORDER BY dish_id";
+                using (var cmd = new MySqlCommand(query, connection))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int dishId = reader.GetInt32("dish_id");
+                        string title = reader.GetString("dish_name");
+                        int priceValue = reader.GetInt32("price");
+                        string price = $"Ціна: {priceValue} грн";
+                        string description = reader.GetString("description");
+                        Image dishImage = null;
 
-                var card = CreateCard(dishId, title, price, description, dishImage);
-                flowLayoutPanel1.Controls.Add(card);
+                        if (!reader.IsDBNull(reader.GetOrdinal("image")))
+                        {
+                            byte[] imgBytes = (byte[])reader["image"];
+                            using (var ms = new MemoryStream(imgBytes))
+                            {
+                                try
+                                {
+                                    dishImage = Image.FromStream(ms);
+                                }
+                                catch
+                                {
+                                    dishImage = null;
+                                }
+                            }
+                        }
+
+                        var card = CreateCard(dishId, title, price, description, dishImage);
+                        flowLayoutPanel1.Controls.Add(card);
+                    }
+                }
             }
         }
 
-        private Image LoadImageFromDatabase(int dishId)
+
+        private void SaveDishDataToDatabase(int dishId, string title, string priceText, string description)
         {
+            int priceValue = ExtractPrice(priceText);
+
             try
             {
                 using (var connection = Database.GetConnection())
                 {
                     connection.Open();
-                    string query = "SELECT image FROM dishes WHERE dish_id = @dishId";
-                    using (var cmd = new MySqlCommand(query, connection))
+
+                    string checkQuery = "SELECT COUNT(*) FROM dishes WHERE dish_id = @dishId";
+                    using (var checkCmd = new MySqlCommand(checkQuery, connection))
                     {
-                        cmd.Parameters.AddWithValue("@dishId", dishId);
-                        var result = cmd.ExecuteScalar();
-                        if (result != DBNull.Value && result != null)
+                        checkCmd.Parameters.AddWithValue("@dishId", dishId);
+                        long count = (long)checkCmd.ExecuteScalar();
+
+                        if (count == 0)
                         {
-                            byte[] imgBytes = (byte[])result;
-                            using (MemoryStream ms = new MemoryStream(imgBytes))
+                            string insertQuery = @"INSERT INTO dishes (dish_id, dish_name, price, description) VALUES (@dishId, @dishName, @price, @description)";
+                            using (var insertCmd = new MySqlCommand(insertQuery, connection))
                             {
-                                return Image.FromStream(ms);
+                                insertCmd.Parameters.AddWithValue("@dishId", dishId);
+                                insertCmd.Parameters.AddWithValue("@dishName", title);
+                                insertCmd.Parameters.AddWithValue("@price", priceValue);
+                                insertCmd.Parameters.AddWithValue("@description", description);
+                                insertCmd.ExecuteNonQuery();
+                            }
+                        }
+                        else
+                        {
+                            string updateQuery = @"UPDATE dishes SET dish_name = @dishName, price = @price, description = @description WHERE dish_id = @dishId";
+                            using (var updateCmd = new MySqlCommand(updateQuery, connection))
+                            {
+                                updateCmd.Parameters.AddWithValue("@dishId", dishId);
+                                updateCmd.Parameters.AddWithValue("@dishName", title);
+                                updateCmd.Parameters.AddWithValue("@price", priceValue);
+                                updateCmd.Parameters.AddWithValue("@description", description);
+                                updateCmd.ExecuteNonQuery();
                             }
                         }
                     }
@@ -81,9 +115,21 @@ namespace курсова2
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Помилка завантаження зображення з бази: " + ex.Message);
+                MessageBox.Show("Помилка збереження даних страви: " + ex.Message);
             }
-            return null;
+        }
+
+        private int ExtractPrice(string priceText)
+        {
+            int price = 0;
+            string digitsOnly = "";
+            foreach (char c in priceText)
+            {
+                if (char.IsDigit(c))
+                    digitsOnly += c;
+            }
+            int.TryParse(digitsOnly, out price);
+            return price;
         }
 
         private Panel CreateCard(int dishId, string title, string price, string description, Image dishImage)
@@ -216,7 +262,7 @@ namespace курсова2
 
                         if (count == 0)
                         {
-                            string insertQuery = "INSERT INTO dishes (dish_id, image) VALUES (@dishId, @image)";
+                            string insertQuery = @"INSERT INTO dishes (dish_id, image) VALUES (@dishId, @image)";
                             using (var insertCmd = new MySqlCommand(insertQuery, connection))
                             {
                                 insertCmd.Parameters.AddWithValue("@dishId", dishId);
@@ -226,7 +272,7 @@ namespace курсова2
                         }
                         else
                         {
-                            string updateQuery = "UPDATE dishes SET image = @image WHERE dish_id = @dishId";
+                            string updateQuery = @"UPDATE dishes SET image = @image WHERE dish_id = @dishId";
                             using (var updateCmd = new MySqlCommand(updateQuery, connection))
                             {
                                 updateCmd.Parameters.AddWithValue("@dishId", dishId);
@@ -239,21 +285,15 @@ namespace курсова2
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Помилка при збереженні зображення в базу: " + ex.Message);
+                MessageBox.Show("Помилка збереження зображення в базу: " + ex.Message);
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2(userID, login);
-            form2.FormClosed += (s, args) => this.Close();
+            Form2 f2 = new Form2(userID, login);
+            f2.Show();
             this.Hide();
-            form2.Show();
-        }
-
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
