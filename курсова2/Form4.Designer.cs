@@ -1,6 +1,6 @@
 ﻿namespace курсова2
 {
-    partial class Form3
+    partial class Form4
     {
         /// <summary>
         /// Required designer variable.
@@ -28,18 +28,42 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form3));
+            label1 = new Label();
+            label2 = new Label();
+            flowLayoutPanel1 = new FlowLayoutPanel();
             panel1 = new Panel();
             flowLayoutPanel2 = new FlowLayoutPanel();
-            pictureBox1 = new PictureBox();
             button2 = new Button();
             button1 = new Button();
-            labelHidden = new Label();
-            flowLayoutPanel1 = new FlowLayoutPanel();
-            label1 = new Label();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(122, 59);
+            label1.Name = "label1";
+            label1.Size = new Size(117, 17);
+            label1.TabIndex = 1;
+            label1.Text = "Кошик замовлень";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(82, 389);
+            label2.Name = "label2";
+            label2.Size = new Size(157, 15);
+            label2.TabIndex = 2;
+            label2.Text = "Сума Вашого замовлення: ";
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.AutoScroll = true;
+            flowLayoutPanel1.Location = new Point(82, 96);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(539, 290);
+            flowLayoutPanel1.TabIndex = 3;
             // 
             // panel1
             // 
@@ -47,10 +71,10 @@
             panel1.Controls.Add(flowLayoutPanel2);
             panel1.Controls.Add(button2);
             panel1.Controls.Add(button1);
-            panel1.Location = new Point(-1, -3);
+            panel1.Location = new Point(0, -2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(926, 47);
-            panel1.TabIndex = 11;
+            panel1.Size = new Size(802, 47);
+            panel1.TabIndex = 12;
             // 
             // flowLayoutPanel2
             // 
@@ -59,23 +83,13 @@
             flowLayoutPanel2.Size = new Size(806, 415);
             flowLayoutPanel2.TabIndex = 28;
             // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(856, 61);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(44, 30);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 26;
-            pictureBox1.TabStop = false;
-            // 
             // button2
             // 
             button2.Location = new Point(183, 3);
             button2.Name = "button2";
             button2.Size = new Size(127, 44);
             button2.TabIndex = 13;
-            button2.Text = "Замовлення";
+            button2.Text = "Повернутись назад";
             button2.UseVisualStyleBackColor = true;
             // 
             // button1
@@ -87,62 +101,30 @@
             button1.Text = "Кабiнет";
             button1.UseVisualStyleBackColor = true;
             // 
-            // labelHidden
-            // 
-            labelHidden.AutoSize = true;
-            labelHidden.Location = new Point(774, 442);
-            labelHidden.Name = "labelHidden";
-            labelHidden.Size = new Size(44, 15);
-            labelHidden.TabIndex = 24;
-            labelHidden.Text = "label11";
-            labelHidden.Visible = false;
-            // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.Location = new Point(-1, 103);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(926, 260);
-            flowLayoutPanel1.TabIndex = 25;
-            flowLayoutPanel1.WrapContents = false;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(343, 66);
-            label1.Name = "label1";
-            label1.Size = new Size(263, 25);
-            label1.TabIndex = 27;
-            label1.Text = "Сформуйте своє замовлення";
-            // 
-            // Form3
+            // Form4
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(924, 386);
-            Controls.Add(label1);
-            Controls.Add(pictureBox1);
-            Controls.Add(flowLayoutPanel1);
-            Controls.Add(labelHidden);
+            ClientSize = new Size(800, 450);
             Controls.Add(panel1);
-            Name = "Form3";
+            Controls.Add(flowLayoutPanel1);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Name = "Form4";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form3";
+            Text = "Form4";
             panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
+        private Label label1;
+        private Label label2;
+        private FlowLayoutPanel flowLayoutPanel1;
         private Panel panel1;
+        private FlowLayoutPanel flowLayoutPanel2;
         private Button button2;
         private Button button1;
-        private Label labelHidden;
-        private FlowLayoutPanel flowLayoutPanel1;
-        private PictureBox pictureBox1;
-        private Label label1;
-        private FlowLayoutPanel flowLayoutPanel2;
     }
 }

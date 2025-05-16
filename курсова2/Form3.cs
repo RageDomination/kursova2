@@ -18,6 +18,7 @@ namespace курсова2
             this.login = login;
             this.button1.Click += button1_Click;
             this.Load += Form3_Load;
+            this.pictureBox1.Click += pictureBox1_Click;
         }
 
         private void Form3_Load(object sender, EventArgs e)
@@ -35,7 +36,7 @@ namespace курсова2
                 {
                     connection.Open();
 
-                    string query = "SELECT dish_id, dish_name, price, description, image FROM dishes ORDER BY dish_id";
+                    string query = "SELECT dish_id, dish_name, price, description, image, in_cart FROM dishes ORDER BY dish_id";
 
                     using (var cmd = new MySqlCommand(query, connection))
                     using (var reader = cmd.ExecuteReader())
@@ -46,8 +47,12 @@ namespace курсова2
                             string title = reader.GetString("dish_name");
                             int priceValue = reader.GetInt32("price");
                             string description = reader.GetString("description");
-                            Image dishImage = null;
 
+                            string inCartRaw = reader.IsDBNull(reader.GetOrdinal("in_cart")) ? "deactivated" : reader.GetString("in_cart");
+                            // Твоя логика: "activated" или "deactivated"
+                            string inCart = inCartRaw == "yes" || inCartRaw == "activated" ? "activated" : "deactivated";
+
+                            Image dishImage = null;
                             if (!reader.IsDBNull(reader.GetOrdinal("image")))
                             {
                                 byte[] imgBytes = (byte[])reader["image"];
@@ -64,7 +69,7 @@ namespace курсова2
                                 }
                             }
 
-                            var card = CreateCard(dishId, title, priceValue, description, dishImage);
+                            var card = CreateCard(dishId, title, priceValue, description, dishImage, inCart);
                             flowLayoutPanel1.Controls.Add(card);
                         }
                     }
@@ -76,7 +81,7 @@ namespace курсова2
             }
         }
 
-        private Panel CreateCard(int dishId, string title, int priceValue, string description, Image dishImage)
+        private Panel CreateCard(int dishId, string title, int priceValue, string description, Image dishImage, string inCart)
         {
             Panel panel = new Panel
             {
@@ -96,14 +101,6 @@ namespace курсова2
                 Image = dishImage
             };
 
-            if (dishImage == null)
-            {
-                pictureBox.Paint += (s, e) =>
-                {
-
-                };
-            }
-
             pictureBox.Click += (s, e) =>
             {
                 using (OpenFileDialog ofd = new OpenFileDialog())
@@ -117,7 +114,6 @@ namespace курсова2
                             pictureBox.Image = img;
                             pictureBox.BackColor = Color.Transparent;
                             pictureBox.BorderStyle = BorderStyle.None;
-                            pictureBox.Paint -= null;
 
                             SaveImageToDatabase(dishId, img);
                         }
@@ -161,7 +157,14 @@ namespace курсова2
                 Font = new Font("Arial", 9, FontStyle.Regular),
                 AutoSize = true,
                 Location = new Point(panel.Width - 90, 168),
-                BackColor = Color.Transparent
+                BackColor = Color.Transparent,
+                Checked = (inCart == "activated")
+            };
+
+            checkBox.CheckedChanged += (s, e) =>
+            {
+                string status = checkBox.Checked ? "yes" : "no";
+                UpdateInCartStatus(dishId, status);
             };
 
             Button btnReviews = new Button
@@ -184,6 +187,28 @@ namespace курсова2
             panel.Controls.Add(btnReviews);
 
             return panel;
+        }
+
+        private void UpdateInCartStatus(int dishId, string status)
+        {
+            try
+            {
+                using (var connection = Database.GetConnection())
+                {
+                    connection.Open();
+                    string query = "UPDATE dishes SET in_cart = @status WHERE dish_id = @dishId";
+                    using (var cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@status", status);
+                        cmd.Parameters.AddWithValue("@dishId", dishId);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Помилка оновлення статусу у кошику: " + ex.Message);
+            }
         }
 
         private void SaveImageToDatabase(int dishId, Image image)
@@ -231,6 +256,13 @@ namespace курсова2
         {
             Form2 f2 = new Form2(userID, login);
             f2.Show();
+            this.Hide();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Form4 form4 = new Form4(userID, login);
+            form4.Show();
             this.Hide();
         }
     }
