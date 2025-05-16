@@ -158,7 +158,6 @@
             dateTimePicker1.RightToLeft = RightToLeft.Yes;
             dateTimePicker1.Size = new Size(202, 23);
             dateTimePicker1.TabIndex = 17;
-            dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
             // 
             // label4
             // 

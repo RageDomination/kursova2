@@ -28,8 +28,8 @@ namespace курсова2
 
             flowLayoutPanel1.AutoScroll = true;
             flowLayoutPanel1.Controls.Clear();
-            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown; // вертикальный поток
-            flowLayoutPanel1.WrapContents = false;                 // не переносить на следующую строку
+            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
+            flowLayoutPanel1.WrapContents = false;
 
 
             try
@@ -157,7 +157,7 @@ namespace курсова2
             panel.Controls.Add(checkBox);
             panel.Controls.Add(btnReviews);
 
-            checkBox.Location = new Point(165, lblPrice.Bottom + 5); // чуть вправо от цены
+            checkBox.Location = new Point(165, lblPrice.Bottom + 5);
             btnReviews.Location = new Point(panel.Width - btnReviews.Width - 20, panel.Height - btnReviews.Height - 15);
 
             checkBox.CheckedChanged += (s, e) =>
