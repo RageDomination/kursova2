@@ -16,9 +16,11 @@ namespace курсова2
             InitializeComponent();
             this.userID = userID;
             this.login = login;
+
             LoadCartItems();
-            this.button1.Click += button1_Click;
-            this.button2.Click += button2_Click;
+
+            this.button1.Click += button1_Click; // Кнопка назад на Form2
+            this.button2.Click += button2_Click; // Кнопка назад на Form3
         }
 
         private void LoadCartItems()
@@ -29,40 +31,51 @@ namespace курсова2
             using (var conn = Database.GetConnection())
             {
                 conn.Open();
-                string query = "SELECT dish_id, dish_name, description, price, image FROM dishes WHERE in_cart = 'yes'";
+
+                string query = @"
+            SELECT d.dish_id, d.dish_name, d.description, d.price, d.image, c.quantility
+            FROM cart c
+            JOIN dishes d ON c.dish_id = d.dish_id
+            WHERE c.user_id = @userID";
 
                 using (var cmd = new MySqlCommand(query, conn))
-                using (var reader = cmd.ExecuteReader())
                 {
-                    while (reader.Read())
+                    cmd.Parameters.AddWithValue("@userID", userID);
+
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        int dishId = reader.GetInt32("dish_id");
-                        string name = reader.GetString("dish_name");
-                        string description = reader.GetString("description");
-                        decimal price = reader.GetDecimal("price");
-
-                        Image image = null;
-                        if (!reader.IsDBNull(reader.GetOrdinal("image")))
+                        while (reader.Read())
                         {
-                            byte[] imageBytes = (byte[])reader["image"];
-                            using (MemoryStream ms = new MemoryStream(imageBytes))
+                            int dishId = reader.GetInt32("dish_id");
+                            string name = reader.GetString("dish_name");
+                            string description = reader.GetString("description");
+                            decimal price = reader.GetDecimal("price");
+                            int quantility = reader.GetInt32("quantility");
+
+                            Image image = null;
+                            if (!reader.IsDBNull(reader.GetOrdinal("image")))
                             {
-                                image = Image.FromStream(ms);
+                                byte[] imageBytes = (byte[])reader["image"];
+                                using (MemoryStream ms = new MemoryStream(imageBytes))
+                                {
+                                    image = Image.FromStream(ms);
+                                }
                             }
+
+                            var panel = CreateCartItemPanel(dishId, name, description, price, image, quantility);
+                            flowLayoutPanel1.Controls.Add(panel);
+
+                            total += price * quantility;
                         }
-
-                        var panel = CreateCartItemPanel(dishId, name, description, price, image);
-                        flowLayoutPanel1.Controls.Add(panel);
-
-                        total += price;
                     }
                 }
             }
 
-            label2.Text = $"Загальна сума: {total} грн";
+            label2.Text = $"Всього: {total} грн";
         }
 
-        private Panel CreateCartItemPanel(int dishId, string name, string description, decimal price, Image image)
+
+        private Panel CreateCartItemPanel(int dishId, string name, string description, decimal price, Image image, int quantity)
         {
             Panel panel = new Panel
             {
@@ -104,14 +117,14 @@ namespace курсова2
 
             Label lblQuantity = new Label
             {
-                Text = "Кількість: 1",
+                Text = $"Кількість: {quantity}",
                 Location = new Point(120, 95),
                 AutoSize = true
             };
 
             Label lblSum = new Label
             {
-                Text = $"Сума: {price} грн",
+                Text = $"Сума: {price * quantity} грн",
                 Location = new Point(220, 95),
                 AutoSize = true
             };
@@ -130,13 +143,12 @@ namespace курсова2
                 Location = new Point(390, 90)
             };
 
-            int quantity = 1;
-
             btnPlus.Click += (s, e) =>
             {
                 quantity++;
                 lblQuantity.Text = $"Кількість: {quantity}";
                 lblSum.Text = $"Сума: {price * quantity} грн";
+                UpdateCartQuantity(dishId, quantity);
                 RecalculateTotal();
             };
 
@@ -147,7 +159,13 @@ namespace курсова2
                     quantity--;
                     lblQuantity.Text = $"Кількість: {quantity}";
                     lblSum.Text = $"Сума: {price * quantity} грн";
+                    UpdateCartQuantity(dishId, quantity);
                     RecalculateTotal();
+                }
+                else
+                {
+                    RemoveFromCart(dishId);
+                    LoadCartItems();
                 }
             };
 
@@ -161,6 +179,37 @@ namespace курсова2
             panel.Controls.Add(btnMinus);
 
             return panel;
+        }
+
+        private void UpdateCartQuantity(int dishId, int quantity)
+        {
+            using (var conn = Database.GetConnection())
+            {
+                conn.Open();
+                string query = "UPDATE cart SET quantility = @quantity WHERE user_id = @userID AND dish_id = @dishId";
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@quantity", quantity);
+                    cmd.Parameters.AddWithValue("@userID", userID);
+                    cmd.Parameters.AddWithValue("@dishId", dishId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        private void RemoveFromCart(int dishId)
+        {
+            using (var conn = Database.GetConnection())
+            {
+                conn.Open();
+                string query = "DELETE FROM cart WHERE user_id = @userID AND dish_id = @dishId";
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@userID", userID);
+                    cmd.Parameters.AddWithValue("@dishId", dishId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         private void RecalculateTotal()
@@ -180,7 +229,7 @@ namespace курсова2
                     }
                 }
             }
-            label2.Text = $"Загальна сума: {total} грн";
+            label2.Text = $"Всього: {total} грн";
         }
 
         private void button1_Click(object sender, EventArgs e)

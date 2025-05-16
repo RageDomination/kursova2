@@ -51,11 +51,11 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(82, 389);
+            label2.Location = new Point(677, 413);
             label2.Name = "label2";
-            label2.Size = new Size(157, 15);
+            label2.Size = new Size(48, 15);
             label2.TabIndex = 2;
-            label2.Text = "Сума Вашого замовлення: ";
+            label2.Text = "Всього:";
             // 
             // flowLayoutPanel1
             // 

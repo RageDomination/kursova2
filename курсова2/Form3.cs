@@ -16,6 +16,7 @@ namespace курсова2
             InitializeComponent();
             this.userID = userID;
             this.login = login;
+
             this.button1.Click += button1_Click;
             this.Load += Form3_Load;
             this.pictureBox1.Click += pictureBox1_Click;
@@ -36,41 +37,46 @@ namespace курсова2
                 {
                     connection.Open();
 
-                    string query = "SELECT dish_id, dish_name, price, description, image, in_cart FROM dishes ORDER BY dish_id";
+                    string query = @"
+                        SELECT d.dish_id, d.dish_name, d.price, d.description, d.image,
+                            IF(c.quantility IS NULL, 0, c.quantility) AS quantility_in_cart
+                        FROM dishes d
+                        LEFT JOIN cart c ON d.dish_id = c.dish_id AND c.user_id = @userID
+                        ORDER BY d.dish_id";
 
                     using (var cmd = new MySqlCommand(query, connection))
-                    using (var reader = cmd.ExecuteReader())
                     {
-                        while (reader.Read())
+                        cmd.Parameters.AddWithValue("@userID", userID);
+                        using (var reader = cmd.ExecuteReader())
                         {
-                            int dishId = reader.GetInt32("dish_id");
-                            string title = reader.GetString("dish_name");
-                            int priceValue = reader.GetInt32("price");
-                            string description = reader.GetString("description");
-
-                            string inCartRaw = reader.IsDBNull(reader.GetOrdinal("in_cart")) ? "deactivated" : reader.GetString("in_cart");
-                            // Твоя логика: "activated" или "deactivated"
-                            string inCart = inCartRaw == "yes" || inCartRaw == "activated" ? "activated" : "deactivated";
-
-                            Image dishImage = null;
-                            if (!reader.IsDBNull(reader.GetOrdinal("image")))
+                            while (reader.Read())
                             {
-                                byte[] imgBytes = (byte[])reader["image"];
-                                using (var ms = new MemoryStream(imgBytes))
+                                int dishId = reader.GetInt32("dish_id");
+                                string title = reader.GetString("dish_name");
+                                decimal priceValue = reader.GetDecimal("price");
+                                string description = reader.GetString("description");
+                                int quantilityInCart = reader.GetInt32("quantility_in_cart");
+
+                                Image dishImage = null;
+                                if (!reader.IsDBNull(reader.GetOrdinal("image")))
                                 {
-                                    try
+                                    byte[] imgBytes = (byte[])reader["image"];
+                                    using (var ms = new MemoryStream(imgBytes))
                                     {
-                                        dishImage = Image.FromStream(ms);
-                                    }
-                                    catch
-                                    {
-                                        dishImage = null;
+                                        try
+                                        {
+                                            dishImage = Image.FromStream(ms);
+                                        }
+                                        catch
+                                        {
+                                            dishImage = null;
+                                        }
                                     }
                                 }
-                            }
 
-                            var card = CreateCard(dishId, title, priceValue, description, dishImage, inCart);
-                            flowLayoutPanel1.Controls.Add(card);
+                                var card = CreateCard(dishId, title, priceValue, description, dishImage, quantilityInCart > 0);
+                                flowLayoutPanel1.Controls.Add(card);
+                            }
                         }
                     }
                 }
@@ -81,7 +87,7 @@ namespace курсова2
             }
         }
 
-        private Panel CreateCard(int dishId, string title, int priceValue, string description, Image dishImage, string inCart)
+        private Panel CreateCard(int dishId, string title, decimal priceValue, string description, Image dishImage, bool inCart)
         {
             Panel panel = new Panel
             {
@@ -158,13 +164,19 @@ namespace курсова2
                 AutoSize = true,
                 Location = new Point(panel.Width - 90, 168),
                 BackColor = Color.Transparent,
-                Checked = (inCart == "activated")
+                Checked = inCart
             };
 
             checkBox.CheckedChanged += (s, e) =>
             {
-                string status = checkBox.Checked ? "yes" : "no";
-                UpdateInCartStatus(dishId, status);
+                if (checkBox.Checked)
+                {
+                    AddToCart(dishId);
+                }
+                else
+                {
+                    RemoveFromCart(dishId);
+                }
             };
 
             Button btnReviews = new Button
@@ -189,17 +201,20 @@ namespace курсова2
             return panel;
         }
 
-        private void UpdateInCartStatus(int dishId, string status)
+        private void AddToCart(int dishId)
         {
             try
             {
                 using (var connection = Database.GetConnection())
                 {
                     connection.Open();
-                    string query = "UPDATE dishes SET in_cart = @status WHERE dish_id = @dishId";
+                    string query = @"
+                        INSERT INTO cart (user_id, dish_id, quantility)
+                        VALUES (@userID, @dishId, 1)
+                        ON DUPLICATE KEY UPDATE quantility = quantility + 1";
                     using (var cmd = new MySqlCommand(query, connection))
                     {
-                        cmd.Parameters.AddWithValue("@status", status);
+                        cmd.Parameters.AddWithValue("@userID", userID);
                         cmd.Parameters.AddWithValue("@dishId", dishId);
                         cmd.ExecuteNonQuery();
                     }
@@ -207,7 +222,29 @@ namespace курсова2
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Помилка оновлення статусу у кошику: " + ex.Message);
+                MessageBox.Show("Помилка додавання до кошика: " + ex.Message);
+            }
+        }
+
+        private void RemoveFromCart(int dishId)
+        {
+            try
+            {
+                using (var connection = Database.GetConnection())
+                {
+                    connection.Open();
+                    string query = "DELETE FROM cart WHERE user_id = @userID AND dish_id = @dishId";
+                    using (var cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@userID", userID);
+                        cmd.Parameters.AddWithValue("@dishId", dishId);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Помилка видалення з кошика: " + ex.Message);
             }
         }
 
@@ -231,18 +268,7 @@ namespace курсова2
                     {
                         updateCmd.Parameters.AddWithValue("@dishId", dishId);
                         updateCmd.Parameters.AddWithValue("@image", imgBytes);
-                        int rowsAffected = updateCmd.ExecuteNonQuery();
-
-                        if (rowsAffected == 0)
-                        {
-                            string insertQuery = @"INSERT INTO dishes (dish_id, image) VALUES (@dishId, @image)";
-                            using (var insertCmd = new MySqlCommand(insertQuery, connection))
-                            {
-                                insertCmd.Parameters.AddWithValue("@dishId", dishId);
-                                insertCmd.Parameters.AddWithValue("@image", imgBytes);
-                                insertCmd.ExecuteNonQuery();
-                            }
-                        }
+                        updateCmd.ExecuteNonQuery();
                     }
                 }
             }
