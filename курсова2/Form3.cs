@@ -26,10 +26,11 @@ namespace курсова2
         {
             this.ActiveControl = labelHidden;
 
-            flowLayoutPanel1.FlowDirection = FlowDirection.LeftToRight;
-            flowLayoutPanel1.WrapContents = false;
             flowLayoutPanel1.AutoScroll = true;
             flowLayoutPanel1.Controls.Clear();
+            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown; // вертикальный поток
+            flowLayoutPanel1.WrapContents = false;                 // не переносить на следующую строку
+
 
             try
             {
@@ -91,7 +92,8 @@ namespace курсова2
         {
             Panel panel = new Panel
             {
-                Size = new Size(180, 230),
+                Width = 550,
+                Height = 160,
                 Margin = new Padding(10),
                 BackColor = Color.White,
                 BorderStyle = BorderStyle.FixedSingle
@@ -99,12 +101,76 @@ namespace курсова2
 
             PictureBox pictureBox = new PictureBox
             {
-                Size = new Size(160, 90),
+                Size = new Size(140, 140),
                 Location = new Point(10, 10),
                 SizeMode = PictureBoxSizeMode.Zoom,
                 BackColor = dishImage == null ? Color.LightGray : Color.Transparent,
                 BorderStyle = dishImage == null ? BorderStyle.FixedSingle : BorderStyle.None,
                 Image = dishImage
+            };
+
+            Label lblTitle = new Label
+            {
+                Text = title,
+                Font = new Font("Arial", 13, FontStyle.Bold),
+                AutoSize = false,
+                Size = new Size(380, 30),
+                TextAlign = ContentAlignment.MiddleCenter,
+                Location = new Point(160, 10)
+            };
+
+            Label lblDescription = new Label
+            {
+                Text = description,
+                Font = new Font("Arial", 10, FontStyle.Regular),
+                Location = new Point(160, 45),
+                Size = new Size(370, 60),
+                AutoEllipsis = true
+            };
+
+            Label lblPrice = new Label
+            {
+                Text = $"Цiна: {priceValue} грн",
+                Font = new Font("Arial", 11, FontStyle.Regular),
+                Location = new Point(160, 110),
+                AutoSize = true
+            };
+
+            CheckBox checkBox = new CheckBox
+            {
+                Text = "До кошику",
+                Font = new Font("Arial", 10, FontStyle.Regular),
+                AutoSize = true,
+                BackColor = Color.Transparent,
+                Checked = inCart
+            };
+
+            Button btnReviews = new Button
+            {
+                Text = "Переглянути відгуки",
+                Size = new Size(160, 30)
+            };
+
+            panel.Controls.Add(pictureBox);
+            panel.Controls.Add(lblTitle);
+            panel.Controls.Add(lblDescription);
+            panel.Controls.Add(lblPrice);
+            panel.Controls.Add(checkBox);
+            panel.Controls.Add(btnReviews);
+
+            checkBox.Location = new Point(160, lblPrice.Bottom + 5);
+            btnReviews.Location = new Point(panel.Width - btnReviews.Width - 20, panel.Height - btnReviews.Height - 15);
+            checkBox.CheckedChanged += (s, e) =>
+            {
+                if (checkBox.Checked)
+                    AddToCart(dishId);
+                else
+                    RemoveFromCart(dishId);
+            };
+
+            btnReviews.Click += (s, e) =>
+            {
+                MessageBox.Show($"Показати відгуки для блюда ID: {dishId}");
             };
 
             pictureBox.Click += (s, e) =>
@@ -130,73 +196,6 @@ namespace курсова2
                     }
                 }
             };
-
-            Label lblTitle = new Label
-            {
-                Text = title,
-                Font = new Font("Arial", 11, FontStyle.Bold),
-                Location = new Point(10, 105),
-                Size = new Size(160, 20),
-                AutoEllipsis = true
-            };
-
-            Label lblDescription = new Label
-            {
-                Text = description,
-                Font = new Font("Arial", 9, FontStyle.Regular),
-                Location = new Point(10, 125),
-                Size = new Size(160, 40),
-                AutoEllipsis = true
-            };
-
-            Label lblPrice = new Label
-            {
-                Text = $"{priceValue} грн",
-                Font = new Font("Arial", 10, FontStyle.Regular),
-                Location = new Point(10, 170),
-                AutoSize = true
-            };
-
-            CheckBox checkBox = new CheckBox
-            {
-                Text = "До кошику",
-                Font = new Font("Arial", 9, FontStyle.Regular),
-                AutoSize = true,
-                Location = new Point(panel.Width - 90, 168),
-                BackColor = Color.Transparent,
-                Checked = inCart
-            };
-
-            checkBox.CheckedChanged += (s, e) =>
-            {
-                if (checkBox.Checked)
-                {
-                    AddToCart(dishId);
-                }
-                else
-                {
-                    RemoveFromCart(dishId);
-                }
-            };
-
-            Button btnReviews = new Button
-            {
-                Text = "Переглянути відгуки",
-                Size = new Size(160, 30),
-                Location = new Point(10, 190)
-            };
-
-            btnReviews.Click += (s, e) =>
-            {
-                MessageBox.Show($"Показати відгуки для блюда ID: {dishId}");
-            };
-
-            panel.Controls.Add(pictureBox);
-            panel.Controls.Add(lblTitle);
-            panel.Controls.Add(lblDescription);
-            panel.Controls.Add(lblPrice);
-            panel.Controls.Add(checkBox);
-            panel.Controls.Add(btnReviews);
 
             return panel;
         }

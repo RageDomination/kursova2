@@ -31,9 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form3));
             panel1 = new Panel();
             flowLayoutPanel2 = new FlowLayoutPanel();
-            pictureBox1 = new PictureBox();
             button2 = new Button();
             button1 = new Button();
+            pictureBox1 = new PictureBox();
             labelHidden = new Label();
             flowLayoutPanel1 = new FlowLayoutPanel();
             label1 = new Label();
@@ -59,16 +59,6 @@
             flowLayoutPanel2.Size = new Size(806, 415);
             flowLayoutPanel2.TabIndex = 28;
             // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(856, 61);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(44, 30);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 26;
-            pictureBox1.TabStop = false;
-            // 
             // button2
             // 
             button2.Location = new Point(183, 3);
@@ -87,10 +77,20 @@
             button1.Text = "Кабiнет";
             button1.UseVisualStyleBackColor = true;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(856, 61);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(44, 30);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 26;
+            pictureBox1.TabStop = false;
+            // 
             // labelHidden
             // 
             labelHidden.AutoSize = true;
-            labelHidden.Location = new Point(774, 442);
+            labelHidden.Location = new Point(881, 499);
             labelHidden.Name = "labelHidden";
             labelHidden.Size = new Size(44, 15);
             labelHidden.TabIndex = 24;
@@ -99,9 +99,10 @@
             // 
             // flowLayoutPanel1
             // 
-            flowLayoutPanel1.Location = new Point(-1, 103);
+            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
+            flowLayoutPanel1.Location = new Point(163, 103);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(926, 260);
+            flowLayoutPanel1.Size = new Size(599, 354);
             flowLayoutPanel1.TabIndex = 25;
             flowLayoutPanel1.WrapContents = false;
             // 
@@ -119,7 +120,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(924, 386);
+            ClientSize = new Size(924, 513);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
             Controls.Add(flowLayoutPanel1);
