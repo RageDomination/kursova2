@@ -100,19 +100,19 @@
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel1.Location = new Point(163, 103);
+            flowLayoutPanel1.Location = new Point(182, 103);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(599, 354);
+            flowLayoutPanel1.Size = new Size(590, 354);
             flowLayoutPanel1.TabIndex = 25;
             flowLayoutPanel1.WrapContents = false;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(343, 66);
             label1.Name = "label1";
-            label1.Size = new Size(263, 25);
+            label1.Size = new Size(283, 25);
             label1.TabIndex = 27;
             label1.Text = "Сформуйте своє замовлення";
             // 

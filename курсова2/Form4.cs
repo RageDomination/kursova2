@@ -19,8 +19,8 @@ namespace курсова2
 
             LoadCartItems();
 
-            this.button1.Click += button1_Click; // Кнопка назад на Form2
-            this.button2.Click += button2_Click; // Кнопка назад на Form3
+            this.button1.Click += button1_Click;
+            this.button2.Click += button2_Click;
         }
 
         private void LoadCartItems()

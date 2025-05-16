@@ -113,10 +113,9 @@ namespace курсова2
             {
                 Text = title,
                 Font = new Font("Arial", 13, FontStyle.Bold),
-                AutoSize = false,
-                Size = new Size(380, 30),
-                TextAlign = ContentAlignment.MiddleCenter,
-                Location = new Point(160, 10)
+                AutoSize = true,
+                Location = new Point(160, 10),
+                TextAlign = ContentAlignment.MiddleLeft
             };
 
             Label lblDescription = new Label
@@ -158,8 +157,9 @@ namespace курсова2
             panel.Controls.Add(checkBox);
             panel.Controls.Add(btnReviews);
 
-            checkBox.Location = new Point(160, lblPrice.Bottom + 5);
+            checkBox.Location = new Point(165, lblPrice.Bottom + 5); // чуть вправо от цены
             btnReviews.Location = new Point(panel.Width - btnReviews.Width - 20, panel.Height - btnReviews.Height - 15);
+
             checkBox.CheckedChanged += (s, e) =>
             {
                 if (checkBox.Checked)
@@ -199,7 +199,6 @@ namespace курсова2
 
             return panel;
         }
-
         private void AddToCart(int dishId)
         {
             try
@@ -246,7 +245,6 @@ namespace курсова2
                 MessageBox.Show("Помилка видалення з кошика: " + ex.Message);
             }
         }
-
         private void SaveImageToDatabase(int dishId, Image image)
         {
             try
