@@ -16,11 +16,12 @@ namespace курсова2
             InitializeComponent();
             this.userID = userID;
             this.login = login;
-
             LoadCartItems();
-
             this.button1.Click += button1_Click;
             this.button2.Click += button2_Click;
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = "dd.MM.yyyy HH:mm";
+            dateTimePicker1.ShowUpDown = true;
         }
 
         private void LoadCartItems()
@@ -244,6 +245,11 @@ namespace курсова2
             this.Hide();
             Form3 form3 = new Form3(userID, login);
             form3.Show();
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
