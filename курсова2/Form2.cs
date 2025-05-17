@@ -27,15 +27,21 @@ namespace курсова2
             this.buttonSave2.Click += new System.EventHandler(this.buttonSave2_Click);
             this.button2.Click += new System.EventHandler(this.button2_Click);
             LoadUserInfo();
-
-            // Добавляем загрузку заказов при создании формы
             LoadOrders(currentUserID);
+            LoadReviews();
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
             label3.Text = $"UserID: {currentUserID}";
             this.ActiveControl = labelHidden;
+            tabControl1.SelectedIndexChanged += (s, e) =>
+            {
+                if (tabControl1.SelectedTab == tabPage2)
+                {
+                    LoadReviews();
+                }
+            };
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -356,6 +362,73 @@ namespace курсова2
                     }
                 }
             }
+        }
+        private void LoadReviews()
+        {
+            tabPage2.Controls.Clear();
+
+            string query = @"
+SELECT r.review_id, r.user_id, r.dish_id, d.dish_name, r.review_date
+FROM reviews r
+JOIN dishes d ON r.dish_id = d.dish_id
+WHERE r.user_id = @userId
+ORDER BY r.review_date DESC";
+
+            using (MySqlConnection conn = Database.GetConnection())
+            using (MySqlCommand cmd = new MySqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@userId", currentUserID);
+
+                try
+                {
+                    conn.Open();
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        int y = 10;
+                        while (reader.Read())
+                        {
+                            string dishName = reader["dish_name"] == DBNull.Value ? "Без назви" : reader["dish_name"].ToString();
+                            int reviewId = Convert.ToInt32(reader["review_id"]);
+                            int userId = Convert.ToInt32(reader["user_id"]);
+                            int dishId = Convert.ToInt32(reader["dish_id"]);
+                            DateTime reviewDate = reader["review_date"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["review_date"]);
+
+                            string linkText = $"Вiдгук №{reviewId} | {dishName} | {reviewDate:dd.MM.yyyy HH:mm:ss}";
+
+                            LinkLabel link = new LinkLabel();
+                            link.Text = linkText;
+                            link.Tag = new { ReviewId = reviewId, UserId = userId, DishId = dishId };
+                            link.Location = new Point(10, y);
+                            link.AutoSize = true;
+                            link.LinkClicked += ReviewLink_LinkClicked;
+
+                            tabPage2.Controls.Add(link);
+                            y += 25;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Помилка при завантаженні коментарів: " + ex.Message, "Помилка");
+                }
+            }
+        }
+
+        private void ReviewLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            LinkLabel link = sender as LinkLabel;
+            if (link != null && link.Tag != null)
+            {
+                dynamic data = link.Tag;
+                int userId = data.UserId;
+                int dishId = data.DishId;
+                Form5 form5 = new Form5(dishId, userId);
+                form5.Show();
+            }
+        }
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

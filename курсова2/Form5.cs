@@ -79,7 +79,7 @@ namespace курсова2
                 MessageBox.Show("Помилка завантаження відгуків: " + ex.Message);
             }
         }
-        private const int FixedPanelWidth = 385;
+        private const int FixedPanelWidth = 375;
 
         private Panel CreateReviewPanel(Image userPhoto, string userName, object reviewDateObj, string reviewText)
         {
