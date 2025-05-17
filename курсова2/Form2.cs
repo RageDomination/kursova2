@@ -3,8 +3,6 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using Microsoft.VisualBasic.ApplicationServices;
-using Microsoft.VisualBasic.Logging;
 using MySql.Data.MySqlClient;
 
 namespace курсова2
@@ -29,7 +27,11 @@ namespace курсова2
             this.buttonSave2.Click += new System.EventHandler(this.buttonSave2_Click);
             this.button2.Click += new System.EventHandler(this.button2_Click);
             LoadUserInfo();
+
+            // Добавляем загрузку заказов при создании формы
+            LoadOrders(currentUserID);
         }
+
         private void Form2_Load(object sender, EventArgs e)
         {
             label3.Text = $"UserID: {currentUserID}";
@@ -54,6 +56,7 @@ namespace курсова2
                 SaveImagePathToDatabase(selectedImagePath);
             }
         }
+
         private void LoadUserInfo()
         {
             string query = "SELECT login, profile_img, registration_date, name, surname, phone_number, email FROM users WHERE user_id = @userID";
@@ -103,6 +106,7 @@ namespace курсова2
                 }
             }
         }
+
         private void SaveImagePathToDatabase(string imagePath)
         {
             string query = "UPDATE users SET profile_img = @imagePath WHERE user_id = @userID";
@@ -183,6 +187,7 @@ namespace курсова2
                 }
             }
         }
+
         private void buttonSave2_Click(object sender, EventArgs e)
         {
             string oldPassword = textBox5.Text;
@@ -229,12 +234,128 @@ namespace курсова2
                 }
             }
         }
+
         private void button2_Click(object sender, EventArgs e)
         {
             Form3 form3 = new Form3(currentUserID, currentLogin);
             form3.FormClosed += (s, args) => this.Show();
             this.Hide();
             form3.Show();
+        }
+        private void LoadOrders(int userId)
+        {
+            tabPage1.Controls.Clear();
+
+            string query = "SELECT order_id FROM orders WHERE user_id = @userId";
+
+            using (MySqlConnection conn = Database.GetConnection())
+            using (MySqlCommand cmd = new MySqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@userId", userId);
+
+                try
+                {
+                    conn.Open();
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        int yPos = 10;
+
+                        while (reader.Read())
+                        {
+                            int orderId = reader.GetInt32("order_id");
+
+                            LinkLabel link = new LinkLabel();
+                            link.Text = $"Замовлення №{orderId}";
+                            link.Tag = orderId;
+                            link.Location = new Point(10, yPos);
+                            link.AutoSize = true;
+                            link.LinkClicked += OrderLink_LinkClicked;
+
+                            tabPage1.Controls.Add(link);
+
+                            yPos += 25;
+                        }
+
+                        if (yPos == 10)
+                        {
+                            Label noOrdersLabel = new Label();
+                            noOrdersLabel.Text = "Замовлень поки що немає.";
+                            noOrdersLabel.Location = new Point(10, yPos);
+                            noOrdersLabel.AutoSize = true;
+                            tabPage1.Controls.Add(noOrdersLabel);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Помилка при завантаженні замовлень: " + ex.Message);
+                }
+            }
+        }
+        private void OrderLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            LinkLabel link = sender as LinkLabel;
+            if (link != null && link.Tag != null)
+            {
+                int orderId = (int)link.Tag;
+
+                string query = "SELECT * FROM orders WHERE order_id = @orderId";
+
+                using (MySqlConnection conn = Database.GetConnection())
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@orderId", orderId);
+
+                    try
+                    {
+                        conn.Open();
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                string GetSafeString(string column) => reader[column] != DBNull.Value ? reader[column].ToString() : "—";
+                                string GetSafeDate(string column) =>
+                                    reader[column] != DBNull.Value ? Convert.ToDateTime(reader[column]).ToString("dd.MM.yyyy HH:mm") : "—";
+                                string dishesRaw = GetSafeString("dish_name");
+                                string quantitiesRaw = GetSafeString("quantility");
+                                string[] dishes = dishesRaw.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                                string[] quantities = quantitiesRaw.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+                                List<string> combinedList = new List<string>();
+
+                                for (int i = 0; i < dishes.Length; i++)
+                                {
+                                    string dish = dishes[i].Trim();
+                                    string quantity = (i < quantities.Length) ? quantities[i].Trim() : "1";
+                                    combinedList.Add($"{dish} ({quantity} шт.)");
+                                }
+
+                                string dishesWithQuantities = string.Join(", ", combinedList);
+
+                                string details = $"ID ордера: {GetSafeString("order_id")}\n" +
+                                                 $"Дата та час ордера: {GetSafeDate("created_at")}\n" +
+                                                 $"Дата та час замовлення: {GetSafeString("order_date")}\n" +
+                                                 $"Позиції замовлення: {dishesWithQuantities}\n" +
+                                                 $"Ім’я замовника: {GetSafeString("user_name")}\n" +
+                                                 $"Прізвище замовника: {GetSafeString("user_surname")}\n" +
+                                                 $"Телефон замовника: {GetSafeString("user_phone")}\n" +
+                                                 $"Адреса: {GetSafeString("adress")}\n" +
+                                                 $"Сума замовлення: {GetSafeString("sum")} грн";
+
+                                MessageBox.Show(details, "Деталі замовлення");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Замовлення не знайдено.", "Помилка");
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Помилка при завантаженні замовлення: " + ex.Message, "Помилка");
+                    }
+                }
+            }
         }
     }
 }
