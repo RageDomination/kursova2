@@ -170,7 +170,8 @@ namespace курсова2
 
             btnReviews.Click += (s, e) =>
             {
-                MessageBox.Show($"Показати відгуки для блюда ID: {dishId}");
+                Form5 reviewsForm = new Form5(dishId, userID);
+                reviewsForm.ShowDialog();
             };
 
             pictureBox.Click += (s, e) =>
