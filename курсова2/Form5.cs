@@ -98,7 +98,7 @@ namespace курсова2
                 Location = new Point(10, 10),
                 SizeMode = PictureBoxSizeMode.Zoom,
                 Image = userPhoto,
-                BackColor = Color.LightGray
+                BackColor = Color.White
             };
 
             string reviewDateText = "невідома дата";
@@ -110,7 +110,8 @@ namespace курсова2
                 Text = $"{userName},",
                 Font = new Font("Arial", 10, FontStyle.Bold),
                 Location = new Point(pic.Right + 10, 10),
-                AutoSize = true
+                AutoSize = true,
+                BackColor = Color.Transparent
             };
 
             Label lblDate = new Label
@@ -119,13 +120,16 @@ namespace курсова2
                 Font = new Font("Arial", 8, FontStyle.Italic),
                 ForeColor = Color.Gray,
                 Location = new Point(lblName.Left + TextRenderer.MeasureText(lblName.Text, lblName.Font).Width + 3, 12),
-                AutoSize = true
+                AutoSize = true,
+                BackColor = Color.Transparent
             };
+
+            string displayedText = reviewText.Length > 70 ? reviewText.Substring(0, 70) + "..." : reviewText;
 
             TextBox txtReview = new TextBox
             {
-                Text = reviewText,
-                Location = new Point(pic.Right + 10, lblName.Bottom + 5),
+                Text = displayedText,
+                Location = new Point(pic.Right + 10, lblName.Bottom - 4),
                 Width = panel.Width - pic.Width - 40,
                 Height = 40,
                 Multiline = true,
@@ -139,6 +143,27 @@ namespace курсова2
             panel.Controls.Add(lblName);
             panel.Controls.Add(lblDate);
             panel.Controls.Add(txtReview);
+
+            if (reviewText.Length > 70)
+            {
+                Label lblShowMore = new Label
+                {
+                    Text = "переглянути повнiстю",
+                    ForeColor = Color.Gray,
+                    Font = new Font("Arial", 8, FontStyle.Italic),
+                    Cursor = Cursors.Hand,
+                    AutoSize = true,
+                    Location = new Point(txtReview.Left, txtReview.Bottom + 2),
+                    BackColor = Color.Transparent
+                };
+
+                lblShowMore.Click += (s, e) =>
+                {
+                    MessageBox.Show(reviewText, "Повний коментар", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                };
+
+                panel.Controls.Add(lblShowMore);
+            }
 
             return panel;
         }
