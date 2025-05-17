@@ -32,6 +32,7 @@
             textBox1 = new TextBox();
             buttonAddReview = new Button();
             label1 = new Label();
+            label2 = new Label();
             SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -44,14 +45,14 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(29, 447);
+            textBox1.Location = new Point(29, 435);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(371, 23);
             textBox1.TabIndex = 1;
             // 
             // buttonAddReview
             // 
-            buttonAddReview.Location = new Point(96, 476);
+            buttonAddReview.Location = new Point(97, 490);
             buttonAddReview.Name = "buttonAddReview";
             buttonAddReview.Size = new Size(242, 36);
             buttonAddReview.TabIndex = 2;
@@ -63,17 +64,28 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(57, 423);
+            label1.Location = new Point(57, 411);
             label1.Name = "label1";
             label1.Size = new Size(320, 21);
             label1.TabIndex = 3;
             label1.Text = "Хочете залишити вiдгук? Залиште його тут.";
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(393, 511);
+            label2.Name = "label2";
+            label2.Size = new Size(38, 15);
+            label2.TabIndex = 4;
+            label2.Text = "label2";
+            label2.Visible = false;
+            // 
             // Form5
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(428, 521);
+            ClientSize = new Size(428, 538);
+            Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(buttonAddReview);
             Controls.Add(textBox1);
@@ -92,5 +104,6 @@
         private TextBox textBox1;
         private Button buttonAddReview;
         private Label label1;
+        private Label label2;
     }
 }

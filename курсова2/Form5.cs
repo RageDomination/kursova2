@@ -17,6 +17,9 @@ namespace курсова2
             _dishId = dishId;
             _userId = userId;
             LoadReviews();
+            this.ActiveControl = label2;
+            textBox1.Height = 50;
+            textBox1.Multiline = true;
         }
 
         private void LoadReviews()
@@ -124,9 +127,9 @@ namespace курсова2
                 AutoSize = true,
                 BackColor = Color.Transparent
             };
-
-            string displayedText = reviewText.Length > 70 ? reviewText.Substring(0, 70) + "..." : reviewText;
-
+            string singleLineReview = reviewText.Replace("\r", " ").Replace("\n", " ").Trim();
+            bool isLongText = singleLineReview.Length > 70;
+            string displayedText = isLongText ? singleLineReview.Substring(0, 70) + "..." : singleLineReview;
             TextBox txtReview = new TextBox
             {
                 Text = displayedText,
@@ -137,7 +140,9 @@ namespace курсова2
                 ReadOnly = true,
                 BorderStyle = BorderStyle.None,
                 BackColor = Color.White,
-                ScrollBars = ScrollBars.Vertical
+                ScrollBars = ScrollBars.Vertical,
+                Cursor = Cursors.Default,
+                WordWrap = true
             };
 
             panel.Controls.Add(pic);
@@ -145,7 +150,7 @@ namespace курсова2
             panel.Controls.Add(lblDate);
             panel.Controls.Add(txtReview);
 
-            if (reviewText.Length > 70)
+            if (isLongText)
             {
                 Label lblShowMore = new Label
                 {
@@ -168,6 +173,7 @@ namespace курсова2
 
             return panel;
         }
+
 
         private void buttonAddReview_Click(object sender, EventArgs e)
         {
