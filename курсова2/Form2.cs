@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -29,7 +30,6 @@ namespace курсова2
             this.button2.Click += new System.EventHandler(this.button2_Click);
             LoadUserInfo();
         }
-
         private void Form2_Load(object sender, EventArgs e)
         {
             label3.Text = $"UserID: {currentUserID}";
@@ -54,7 +54,6 @@ namespace курсова2
                 SaveImagePathToDatabase(selectedImagePath);
             }
         }
-
         private void LoadUserInfo()
         {
             string query = "SELECT login, profile_img, registration_date, name, surname, phone_number, email FROM users WHERE user_id = @userID";
@@ -104,8 +103,6 @@ namespace курсова2
                 }
             }
         }
-
-
         private void SaveImagePathToDatabase(string imagePath)
         {
             string query = "UPDATE users SET profile_img = @imagePath WHERE user_id = @userID";

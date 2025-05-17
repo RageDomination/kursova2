@@ -11,6 +11,7 @@ namespace курсова2
     {
         private int userID;
         private string login;
+        private bool isPaymentConfirmed = false;
 
         public Form4(int userID, string login)
         {
@@ -25,6 +26,8 @@ namespace курсова2
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "dd.MM.yyyy HH:mm";
             dateTimePicker1.ShowUpDown = true;
+            pictureBox1.Click += pictureBox1_Click;
+            pictureBox2.Click += pictureBox2_Click;
         }
 
         private void LoadUserData()
@@ -180,11 +183,22 @@ namespace курсова2
             new Form3(userID, login).Show();
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            isPaymentConfirmed = true;
+            MessageBox.Show("Успiх! Оплата успiшно проведена.", "Оплата", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            isPaymentConfirmed = true;
+            MessageBox.Show("Успiх! Оплата успiшно проведена.", "Оплата", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
         private void Button3_Click(object sender, EventArgs e)
         {
             if (flowLayoutPanel1.Controls.Count == 0)
             {
-                MessageBox.Show("Ваша корзина пуста.");
+                MessageBox.Show("Ваша корзина пуста.", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -193,10 +207,16 @@ namespace курсова2
             string userPhone = textBox4.Text.Trim();
             string address = textBox3.Text.Trim();
             DateTime orderDate = dateTimePicker1.Value;
+            DateTime createdAt = DateTime.Now;
+            if ((orderDate - createdAt).TotalMinutes < 30)
+            {
+                MessageBox.Show("Замовлення повинно бути зроблене щонайменше за 30 хвилин до бажаного часу доставки.", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(userSurname) || string.IsNullOrEmpty(userPhone) || string.IsNullOrEmpty(address))
             {
-                MessageBox.Show("Будь ласка, заповніть всі поля.");
+                MessageBox.Show("Будь ласка, заповніть всі поля.", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -204,10 +224,10 @@ namespace курсова2
             conn.Open();
 
             string cartQuery = @"
-        SELECT d.dish_id, d.dish_name, d.price, c.quantility
-        FROM cart c
-        JOIN dishes d ON c.dish_id = d.dish_id
-        WHERE c.user_id = @userID";
+SELECT d.dish_id, d.dish_name, d.price, c.quantility
+FROM cart c
+JOIN dishes d ON c.dish_id = d.dish_id
+WHERE c.user_id = @userID";
 
             using var cartCmd = new MySqlCommand(cartQuery, conn);
             cartCmd.Parameters.AddWithValue("@userID", userID);
@@ -248,15 +268,16 @@ namespace курсова2
                 string quantitiesStr = string.Join(",", quantities);
 
                 string insertQuery = @"
-            INSERT INTO orders
-            (user_id, dish_id, order_date, quantility, dish_name, user_name, user_surname, user_phone, adress, sum)
-            VALUES
-            (@user_id, @dish_id, @order_date, @quantility, @dish_name, @user_name, @user_surname, @user_phone, @adress, @sum)";
+INSERT INTO orders
+(user_id, dish_id, order_date, created_at, quantility, dish_name, user_name, user_surname, user_phone, adress, sum)
+VALUES
+(@user_id, @dish_id, @order_date, @created_at, @quantility, @dish_name, @user_name, @user_surname, @user_phone, @adress, @sum)";
 
                 using var insertCmd = new MySqlCommand(insertQuery, conn, transaction);
                 insertCmd.Parameters.AddWithValue("@user_id", userID);
                 insertCmd.Parameters.AddWithValue("@dish_id", dishIdsStr);
                 insertCmd.Parameters.AddWithValue("@order_date", orderDate);
+                insertCmd.Parameters.AddWithValue("@created_at", createdAt);
                 insertCmd.Parameters.AddWithValue("@quantility", quantitiesStr);
                 insertCmd.Parameters.AddWithValue("@dish_name", dishNamesStr);
                 insertCmd.Parameters.AddWithValue("@user_name", userName);
@@ -272,15 +293,21 @@ namespace курсова2
                 clearCmd.Parameters.AddWithValue("@userID", userID);
                 clearCmd.ExecuteNonQuery();
 
+                if (!isPaymentConfirmed)
+                {
+                    MessageBox.Show("Перед оформленням замовлення необхідно провести оплату зручним для вас варiантом: Apple Pay ибо Google Pay.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 transaction.Commit();
 
-                MessageBox.Show("Замовлення успішно оформлено!");
+                MessageBox.Show("Замовлення успішно оформлено!", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadCartItems();
             }
             catch (Exception ex)
             {
                 transaction.Rollback();
-                MessageBox.Show("Помилка при оформленні замовлення: " + ex.Message);
+                MessageBox.Show("Помилка при оформленні замовлення: " + ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -322,10 +322,10 @@
             // 
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
-            tabControl1.Location = new Point(28, 302);
+            tabControl1.Location = new Point(12, 302);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(282, 131);
+            tabControl1.Size = new Size(369, 131);
             tabControl1.TabIndex = 30;
             // 
             // tabPage1
@@ -333,7 +333,7 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(274, 103);
+            tabPage1.Size = new Size(361, 103);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "tabPage1";
             tabPage1.UseVisualStyleBackColor = true;
