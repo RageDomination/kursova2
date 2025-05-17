@@ -79,16 +79,17 @@ namespace курсова2
                 MessageBox.Show("Помилка завантаження відгуків: " + ex.Message);
             }
         }
+        private const int FixedPanelWidth = 385;
+
         private Panel CreateReviewPanel(Image userPhoto, string userName, object reviewDateObj, string reviewText)
         {
             Panel panel = new Panel
             {
-                Width = flowLayoutPanel1.ClientSize.Width - flowLayoutPanel1.Padding.Horizontal - 2,
+                Width = FixedPanelWidth,
                 Height = 90,
                 Margin = new Padding(0, 5, 0, 5),
                 BackColor = Color.White,
                 BorderStyle = BorderStyle.FixedSingle,
-                Anchor = AnchorStyles.Left | AnchorStyles.Right,
                 AutoSize = false
             };
 
@@ -130,7 +131,7 @@ namespace курсова2
             {
                 Text = displayedText,
                 Location = new Point(pic.Right + 10, lblName.Bottom - 4),
-                Width = panel.Width - pic.Width - 40,
+                Width = FixedPanelWidth - pic.Width - 40,
                 Height = 40,
                 Multiline = true,
                 ReadOnly = true,
@@ -167,6 +168,7 @@ namespace курсова2
 
             return panel;
         }
+
         private void buttonAddReview_Click(object sender, EventArgs e)
         {
             string reviewText = textBox1.Text.Trim();

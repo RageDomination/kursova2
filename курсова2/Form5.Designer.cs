@@ -36,21 +36,22 @@
             // 
             // flowLayoutPanel1
             // 
+            flowLayoutPanel1.AutoScroll = true;
             flowLayoutPanel1.Location = new Point(12, 12);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(371, 372);
+            flowLayoutPanel1.Size = new Size(407, 396);
             flowLayoutPanel1.TabIndex = 0;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(12, 412);
+            textBox1.Location = new Point(29, 447);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(371, 23);
             textBox1.TabIndex = 1;
             // 
             // buttonAddReview
             // 
-            buttonAddReview.Location = new Point(79, 441);
+            buttonAddReview.Location = new Point(96, 476);
             buttonAddReview.Name = "buttonAddReview";
             buttonAddReview.Size = new Size(242, 36);
             buttonAddReview.TabIndex = 2;
@@ -62,7 +63,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(39, 387);
+            label1.Location = new Point(57, 423);
             label1.Name = "label1";
             label1.Size = new Size(320, 21);
             label1.TabIndex = 3;
@@ -72,7 +73,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(395, 493);
+            ClientSize = new Size(428, 521);
             Controls.Add(label1);
             Controls.Add(buttonAddReview);
             Controls.Add(textBox1);
