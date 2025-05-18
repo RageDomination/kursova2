@@ -10,6 +10,7 @@ namespace курсова2
     {
         private int userID;
         private string login;
+        private int countInCart = 0;
 
         public Form3(int userID, string login)
         {
@@ -30,7 +31,6 @@ namespace курсова2
             flowLayoutPanel1.Controls.Clear();
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanel1.WrapContents = false;
-
 
             try
             {
@@ -86,6 +86,8 @@ namespace курсова2
             {
                 MessageBox.Show("Помилка завантаження даних з бази: " + ex.Message);
             }
+
+            UpdateCartCount();
         }
 
         private Panel CreateCard(int dishId, string title, decimal priceValue, string description, Image dishImage, bool inCart)
@@ -166,6 +168,8 @@ namespace курсова2
                     AddToCart(dishId);
                 else
                     RemoveFromCart(dishId);
+
+                UpdateCartCount();
             };
 
             btnReviews.Click += (s, e) =>
@@ -200,6 +204,7 @@ namespace курсова2
 
             return panel;
         }
+
         private void AddToCart(int dishId)
         {
             try
@@ -246,6 +251,7 @@ namespace курсова2
                 MessageBox.Show("Помилка видалення з кошика: " + ex.Message);
             }
         }
+
         private void SaveImageToDatabase(int dishId, Image image)
         {
             try
@@ -276,6 +282,32 @@ namespace курсова2
             }
         }
 
+        private void UpdateCartCount()
+        {
+            int count = 0;
+            foreach (Control ctrl in flowLayoutPanel1.Controls)
+            {
+                if (ctrl is Panel panel)
+                {
+                    foreach (Control child in panel.Controls)
+                    {
+                        if (child is CheckBox cb && cb.Checked)
+                        {
+                            count++;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            countInCart = count;
+            label2.Text = countInCart.ToString();
+
+            Size textSize = TextRenderer.MeasureText(label2.Text, label2.Font);
+            int padding = - 2;
+            label2.Left = pictureBox1.Left - textSize.Width - padding;
+            label2.Top = pictureBox1.Bottom - label2.Height;
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             Form2 f2 = new Form2(userID, login);

@@ -37,6 +37,7 @@
             labelHidden = new Label();
             flowLayoutPanel1 = new FlowLayoutPanel();
             label1 = new Label();
+            label2 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -79,6 +80,7 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.Cursor = Cursors.Hand;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(856, 61);
             pictureBox1.Name = "pictureBox1";
@@ -116,11 +118,22 @@
             label1.TabIndex = 27;
             label1.Text = "Сформуйте своє замовлення";
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(831, 69);
+            label2.Name = "label2";
+            label2.Size = new Size(19, 21);
+            label2.TabIndex = 28;
+            label2.Text = "1";
+            // 
             // Form3
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(924, 513);
+            Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
             Controls.Add(flowLayoutPanel1);
@@ -145,5 +158,6 @@
         private PictureBox pictureBox1;
         private Label label1;
         private FlowLayoutPanel flowLayoutPanel2;
+        private Label label2;
     }
 }
