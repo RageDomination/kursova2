@@ -249,10 +249,7 @@ namespace курсова2
                     ForeColor = Color.Gray,
                     Cursor = Cursors.Hand,
                     AutoSize = true,
-                    BackColor = Color.Transparent,
-                    Location = new Point(
-                        panel.Width - 80,
-                        lblShowMore != null ? lblShowMore.Top - 2 : txtReview.Bottom - 6)
+                    BackColor = Color.Transparent
                 };
 
                 lblEdit.Click += (s, e) =>
@@ -262,8 +259,11 @@ namespace курсова2
                 };
 
                 panel.Controls.Add(lblEdit);
-            }
 
+                lblEdit.Location = new Point(
+                    panel.Width - lblEdit.Width - 10,
+                    panel.Height - lblEdit.Height - 5);
+            }
             return panel;
         }
 
