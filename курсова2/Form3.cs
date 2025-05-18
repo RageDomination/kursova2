@@ -304,7 +304,7 @@ namespace курсова2
             label2.Text = countInCart.ToString();
 
             Size textSize = TextRenderer.MeasureText(label2.Text, label2.Font);
-            int padding = - 2;
+            int padding = -2;
             label2.Left = pictureBox1.Left - textSize.Width - padding;
             label2.Top = pictureBox1.Bottom - label2.Height;
         }

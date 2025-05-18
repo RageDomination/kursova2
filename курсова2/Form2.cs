@@ -62,7 +62,6 @@ namespace курсова2
                 SaveImagePathToDatabase(selectedImagePath);
             }
         }
-
         private void LoadUserInfo()
         {
             string query = "SELECT login, profile_img, registration_date, name, surname, phone_number, email FROM users WHERE user_id = @userID";
@@ -112,7 +111,6 @@ namespace курсова2
                 }
             }
         }
-
         private void SaveImagePathToDatabase(string imagePath)
         {
             string query = "UPDATE users SET profile_img = @imagePath WHERE user_id = @userID";
@@ -221,7 +219,7 @@ namespace курсова2
 
                     if (currentPassword != oldPassword)
                     {
-                        MessageBox.Show("Старий пароль введено неправильно.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Поточний пароль введено неправильно.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 

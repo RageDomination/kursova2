@@ -92,6 +92,8 @@
             // labelHidden
             // 
             labelHidden.AutoSize = true;
+            labelHidden.ForeColor = SystemColors.ControlText;
+            labelHidden.ImageAlign = ContentAlignment.MiddleRight;
             labelHidden.Location = new Point(881, 499);
             labelHidden.Name = "labelHidden";
             labelHidden.Size = new Size(44, 15);
@@ -132,6 +134,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(924, 513);
             Controls.Add(label2);
             Controls.Add(label1);
