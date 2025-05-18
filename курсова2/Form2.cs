@@ -252,7 +252,7 @@ namespace курсова2
         {
             tabPage1.Controls.Clear();
 
-            string query = "SELECT order_id FROM orders WHERE user_id = @userId";
+            string query = "SELECT order_id, created_at FROM orders WHERE user_id = @userId ORDER BY created_at DESC";
 
             using (MySqlConnection conn = Database.GetConnection())
             using (MySqlCommand cmd = new MySqlCommand(query, conn))
@@ -269,16 +269,22 @@ namespace курсова2
                         while (reader.Read())
                         {
                             int orderId = reader.GetInt32("order_id");
+                            DateTime createdAt = reader.IsDBNull(reader.GetOrdinal("created_at"))
+                                ? DateTime.MinValue
+                                : reader.GetDateTime("created_at");
+
+                            string formattedDate = createdAt != DateTime.MinValue
+                                ? createdAt.ToString("dd.MM.yyyy HH:mm")
+                                : "—";
 
                             LinkLabel link = new LinkLabel();
-                            link.Text = $"Замовлення №{orderId}";
+                            link.Text = $"Замовлення №{orderId}, {formattedDate}";
                             link.Tag = orderId;
                             link.Location = new Point(10, yPos);
                             link.AutoSize = true;
                             link.LinkClicked += OrderLink_LinkClicked;
 
                             tabPage1.Controls.Add(link);
-
                             yPos += 25;
                         }
 
@@ -425,10 +431,6 @@ ORDER BY r.review_date DESC";
                 Form5 form5 = new Form5(dishId, userId);
                 form5.Show();
             }
-        }
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

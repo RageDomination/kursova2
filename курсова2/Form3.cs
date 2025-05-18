@@ -158,7 +158,7 @@ namespace курсова2
             panel.Controls.Add(btnReviews);
 
             checkBox.Location = new Point(165, lblPrice.Bottom + 5);
-            btnReviews.Location = new Point(panel.Width - btnReviews.Width - 20, panel.Height - btnReviews.Height - 15);
+            btnReviews.Location = new Point(panel.Width - btnReviews.Width - 20, panel.Height - btnReviews.Height - 10);
 
             checkBox.CheckedChanged += (s, e) =>
             {
