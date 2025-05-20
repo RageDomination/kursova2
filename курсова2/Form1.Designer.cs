@@ -155,19 +155,20 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(pictureBox3);
             panel1.Controls.Add(pictureBoxOff);
-            panel1.Location = new Point(-5, -1);
+            panel1.Location = new Point(-2, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(372, 39);
+            panel1.Size = new Size(369, 38);
             panel1.TabIndex = 9;
             // 
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(3, -1);
+            pictureBox3.Location = new Point(3, -3);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(50, 40);
+            pictureBox3.Size = new Size(53, 40);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 15;
             pictureBox3.TabStop = false;
@@ -176,7 +177,7 @@
             // 
             pictureBoxOff.Cursor = Cursors.Hand;
             pictureBoxOff.Image = (Image)resources.GetObject("pictureBoxOff.Image");
-            pictureBoxOff.Location = new Point(309, 3);
+            pictureBoxOff.Location = new Point(308, 0);
             pictureBoxOff.Name = "pictureBoxOff";
             pictureBoxOff.Size = new Size(38, 36);
             pictureBoxOff.SizeMode = PictureBoxSizeMode.StretchImage;

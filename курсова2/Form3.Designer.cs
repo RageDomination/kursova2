@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form3));
             panel1 = new Panel();
+            pictureBox3 = new PictureBox();
             flowLayoutPanel2 = new FlowLayoutPanel();
             button2 = new Button();
             button1 = new Button();
@@ -39,19 +40,32 @@
             label1 = new Label();
             label2 = new Label();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
-            panel1.BackColor = SystemColors.ActiveCaption;
+            panel1.BackColor = Color.White;
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(pictureBox3);
             panel1.Controls.Add(flowLayoutPanel2);
             panel1.Controls.Add(button2);
             panel1.Controls.Add(button1);
-            panel1.Location = new Point(-1, -3);
+            panel1.Location = new Point(-1, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(926, 47);
+            panel1.Size = new Size(926, 37);
             panel1.TabIndex = 11;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(3, -1);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(52, 40);
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox3.TabIndex = 29;
+            pictureBox3.TabStop = false;
             // 
             // flowLayoutPanel2
             // 
@@ -62,24 +76,35 @@
             // 
             // button2
             // 
-            button2.Location = new Point(183, 3);
+            button2.BackColor = Color.DarkSeaGreen;
+            button2.Cursor = Cursors.Hand;
+            button2.FlatStyle = FlatStyle.Popup;
+            button2.Font = new Font("Times New Roman", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            button2.ForeColor = Color.White;
+            button2.Location = new Point(182, -1);
             button2.Name = "button2";
-            button2.Size = new Size(127, 44);
+            button2.Size = new Size(127, 37);
             button2.TabIndex = 13;
             button2.Text = "Замовлення";
-            button2.UseVisualStyleBackColor = true;
+            button2.UseVisualStyleBackColor = false;
             // 
             // button1
             // 
-            button1.Location = new Point(66, 3);
+            button1.BackColor = Color.DarkSeaGreen;
+            button1.Cursor = Cursors.Hand;
+            button1.FlatStyle = FlatStyle.Popup;
+            button1.Font = new Font("Times New Roman", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(58, -1);
             button1.Name = "button1";
-            button1.Size = new Size(125, 44);
+            button1.Size = new Size(125, 37);
             button1.TabIndex = 12;
             button1.Text = "Кабiнет";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             // 
             // pictureBox1
             // 
+            pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Cursor = Cursors.Hand;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(856, 61);
@@ -103,6 +128,8 @@
             // 
             // flowLayoutPanel1
             // 
+            flowLayoutPanel1.BackColor = Color.DarkSeaGreen;
+            flowLayoutPanel1.Cursor = Cursors.Hand;
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanel1.Location = new Point(182, 103);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -113,7 +140,9 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = Color.White;
             label1.Location = new Point(343, 66);
             label1.Name = "label1";
             label1.Size = new Size(283, 25);
@@ -123,10 +152,12 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.ForeColor = Color.White;
             label2.Location = new Point(831, 69);
             label2.Name = "label2";
-            label2.Size = new Size(19, 21);
+            label2.Size = new Size(17, 19);
             label2.TabIndex = 28;
             label2.Text = "1";
             // 
@@ -147,6 +178,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form3";
             panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -163,5 +195,6 @@
         private Label label1;
         private FlowLayoutPanel flowLayoutPanel2;
         private Label label2;
+        private PictureBox pictureBox3;
     }
 }
