@@ -141,11 +141,11 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Font = new Font("Times New Roman", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.White;
             label1.Location = new Point(343, 66);
             label1.Name = "label1";
-            label1.Size = new Size(283, 25);
+            label1.Size = new Size(258, 22);
             label1.TabIndex = 27;
             label1.Text = "Сформуйте своє замовлення";
             // 
@@ -176,7 +176,7 @@
             Controls.Add(panel1);
             Name = "Form3";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form3";
+            Text = "Список замовлень";
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
