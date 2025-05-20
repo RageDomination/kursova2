@@ -124,16 +124,15 @@
             panel1.Controls.Add(pictureBox2);
             panel1.Location = new Point(-4, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(809, 44);
+            panel1.Size = new Size(809, 40);
             panel1.TabIndex = 10;
             // 
             // pictureBox3
             // 
-            pictureBox3.Cursor = Cursors.Hand;
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
             pictureBox3.Location = new Point(3, -1);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(55, 44);
+            pictureBox3.Size = new Size(52, 40);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 14;
             pictureBox3.TabStop = false;
@@ -145,9 +144,9 @@
             button2.FlatStyle = FlatStyle.Popup;
             button2.Font = new Font("Times New Roman", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             button2.ForeColor = SystemColors.Window;
-            button2.Location = new Point(170, -1);
+            button2.Location = new Point(169, -1);
             button2.Name = "button2";
-            button2.Size = new Size(127, 44);
+            button2.Size = new Size(127, 40);
             button2.TabIndex = 13;
             button2.Text = "Замовлення";
             button2.UseVisualStyleBackColor = false;
@@ -160,9 +159,9 @@
             button1.Font = new Font("Times New Roman", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             button1.ForeColor = SystemColors.Window;
             button1.ImageAlign = ContentAlignment.BottomCenter;
-            button1.Location = new Point(56, -1);
+            button1.Location = new Point(50, -1);
             button1.Name = "button1";
-            button1.Size = new Size(125, 44);
+            button1.Size = new Size(122, 40);
             button1.TabIndex = 12;
             button1.Text = "Кабiнет";
             button1.UseVisualStyleBackColor = false;
@@ -173,7 +172,7 @@
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
             pictureBox2.Location = new Point(729, -5);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(58, 48);
+            pictureBox2.Size = new Size(58, 44);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 11;
             pictureBox2.TabStop = false;

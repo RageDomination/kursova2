@@ -39,19 +39,26 @@
             label3 = new Label();
             checkBox1 = new CheckBox();
             panel1 = new Panel();
+            pictureBox3 = new PictureBox();
             pictureBoxOff = new PictureBox();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxOff).BeginInit();
             SuspendLayout();
             // 
             // button1
             // 
+            button1.BackColor = Color.DarkSeaGreen;
+            button1.Cursor = Cursors.Hand;
+            button1.FlatStyle = FlatStyle.Popup;
+            button1.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.ForeColor = Color.White;
             button1.Location = new Point(84, 351);
             button1.Name = "button1";
             button1.Size = new Size(194, 49);
             button1.TabIndex = 0;
             button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // textBox1
@@ -71,10 +78,12 @@
             // linkLabel1
             // 
             linkLabel1.AutoSize = true;
-            linkLabel1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            linkLabel1.BackColor = Color.Transparent;
+            linkLabel1.Font = new Font("Times New Roman", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            linkLabel1.LinkColor = Color.White;
             linkLabel1.Location = new Point(84, 279);
             linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(111, 17);
+            linkLabel1.Size = new Size(117, 17);
             linkLabel1.TabIndex = 3;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "Зареєструватись ";
@@ -83,10 +92,12 @@
             // linkLabel2
             // 
             linkLabel2.AutoSize = true;
-            linkLabel2.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            linkLabel2.BackColor = Color.Transparent;
+            linkLabel2.Font = new Font("Times New Roman", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            linkLabel2.LinkColor = Color.White;
             linkLabel2.Location = new Point(197, 279);
             linkLabel2.Name = "linkLabel2";
-            linkLabel2.Size = new Size(81, 17);
+            linkLabel2.Size = new Size(84, 17);
             linkLabel2.TabIndex = 4;
             linkLabel2.TabStop = true;
             linkLabel2.Text = "Авторизація";
@@ -95,52 +106,71 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = Color.White;
             label1.Location = new Point(103, 82);
             label1.Name = "label1";
-            label1.Size = new Size(149, 17);
+            label1.Size = new Size(167, 19);
             label1.TabIndex = 5;
             label1.Text = "Реєстрація/Авторизація";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.ForeColor = Color.White;
             label2.Location = new Point(84, 141);
             label2.Name = "label2";
-            label2.Size = new Size(85, 17);
+            label2.Size = new Size(97, 19);
             label2.TabIndex = 6;
             label2.Text = "Введіть логін";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.ForeColor = Color.White;
             label3.Location = new Point(84, 206);
             label3.Name = "label3";
-            label3.Size = new Size(99, 17);
+            label3.Size = new Size(110, 19);
             label3.TabIndex = 7;
             label3.Text = "Введіть пароль";
             // 
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            checkBox1.BackColor = Color.Transparent;
+            checkBox1.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            checkBox1.ForeColor = Color.White;
             checkBox1.Location = new Point(84, 255);
             checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(130, 21);
+            checkBox1.Size = new Size(141, 23);
             checkBox1.TabIndex = 8;
             checkBox1.Text = "Показати пароль";
-            checkBox1.UseVisualStyleBackColor = true;
+            checkBox1.UseVisualStyleBackColor = false;
             // 
             // panel1
             // 
-            panel1.BackColor = SystemColors.ActiveCaption;
+            panel1.BackColor = Color.White;
+            panel1.Controls.Add(pictureBox3);
             panel1.Controls.Add(pictureBoxOff);
             panel1.Location = new Point(-5, -1);
             panel1.Name = "panel1";
-            panel1.Size = new Size(372, 43);
+            panel1.Size = new Size(372, 39);
             panel1.TabIndex = 9;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(3, -1);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(50, 40);
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox3.TabIndex = 15;
+            pictureBox3.TabStop = false;
             // 
             // pictureBoxOff
             // 
@@ -148,7 +178,7 @@
             pictureBoxOff.Image = (Image)resources.GetObject("pictureBoxOff.Image");
             pictureBoxOff.Location = new Point(309, 3);
             pictureBoxOff.Name = "pictureBoxOff";
-            pictureBoxOff.Size = new Size(38, 37);
+            pictureBoxOff.Size = new Size(38, 36);
             pictureBoxOff.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBoxOff.TabIndex = 12;
             pictureBoxOff.TabStop = false;
@@ -157,6 +187,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(354, 450);
             Controls.Add(panel1);
             Controls.Add(checkBox1);
@@ -170,9 +202,10 @@
             Controls.Add(button1);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Реєстрація та авторизація користувачів";
+            Text = "Реєстрація та авторизація";
             Load += Form1_Load;
             panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxOff).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -191,5 +224,6 @@
         private CheckBox checkBox1;
         private Panel panel1;
         private PictureBox pictureBoxOff;
+        private PictureBox pictureBox3;
     }
 }

@@ -372,11 +372,11 @@ namespace курсова2
             tabPage2.Controls.Clear();
 
             string query = @"
-SELECT r.review_id, r.user_id, r.dish_id, d.dish_name, r.review_date
-FROM reviews r
-JOIN dishes d ON r.dish_id = d.dish_id
-WHERE r.user_id = @userId
-ORDER BY r.review_date DESC";
+    SELECT r.review_id, r.user_id, r.dish_id, d.dish_name, r.review_date
+    FROM reviews r
+    JOIN dishes d ON r.dish_id = d.dish_id
+    WHERE r.user_id = @userId
+    ORDER BY r.review_date DESC";
 
             using (MySqlConnection conn = Database.GetConnection())
             using (MySqlCommand cmd = new MySqlCommand(query, conn))
@@ -389,8 +389,12 @@ ORDER BY r.review_date DESC";
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         int y = 10;
+                        bool hasReviews = false;
+
                         while (reader.Read())
                         {
+                            hasReviews = true;
+
                             string dishName = reader["dish_name"] == DBNull.Value ? "Без назви" : reader["dish_name"].ToString();
                             int reviewId = Convert.ToInt32(reader["review_id"]);
                             int userId = Convert.ToInt32(reader["user_id"]);
@@ -409,6 +413,15 @@ ORDER BY r.review_date DESC";
                             tabPage2.Controls.Add(link);
                             y += 25;
                         }
+
+                        if (!hasReviews)
+                        {
+                            Label noReviewsLabel = new Label();
+                            noReviewsLabel.Text = "Відгуків ще не було залишено.";
+                            noReviewsLabel.Location = new Point(10, y);
+                            noReviewsLabel.AutoSize = true;
+                            tabPage2.Controls.Add(noReviewsLabel);
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -417,7 +430,6 @@ ORDER BY r.review_date DESC";
                 }
             }
         }
-
         private void ReviewLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             LinkLabel link = sender as LinkLabel;
