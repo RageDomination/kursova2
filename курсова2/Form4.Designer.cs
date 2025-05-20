@@ -51,6 +51,7 @@
             textBox4 = new TextBox();
             label7 = new Label();
             label8 = new Label();
+            labelHidden = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -84,12 +85,11 @@
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.AutoScroll = true;
-            flowLayoutPanel1.BackColor = Color.DarkSeaGreen;
+            flowLayoutPanel1.BackColor = Color.White;
             flowLayoutPanel1.Location = new Point(82, 83);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new Size(539, 322);
             flowLayoutPanel1.TabIndex = 3;
-            flowLayoutPanel1.Paint += flowLayoutPanel1_Paint;
             // 
             // panel1
             // 
@@ -124,6 +124,7 @@
             // button2
             // 
             button2.BackColor = Color.DarkSeaGreen;
+            button2.Cursor = Cursors.Hand;
             button2.FlatStyle = FlatStyle.Popup;
             button2.Font = new Font("Times New Roman", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             button2.ForeColor = Color.White;
@@ -234,6 +235,7 @@
             // button3
             // 
             button3.BackColor = Color.DarkSeaGreen;
+            button3.Cursor = Cursors.Hand;
             button3.FlatStyle = FlatStyle.Popup;
             button3.Font = new Font("Times New Roman", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             button3.ForeColor = Color.White;
@@ -248,6 +250,7 @@
             // 
             pictureBox1.BackColor = Color.White;
             pictureBox1.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox1.Cursor = Cursors.Hand;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(688, 364);
             pictureBox1.Name = "pictureBox1";
@@ -260,6 +263,7 @@
             // 
             pictureBox2.BackColor = Color.White;
             pictureBox2.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox2.Cursor = Cursors.Hand;
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
             pictureBox2.Location = new Point(761, 364);
             pictureBox2.Name = "pictureBox2";
@@ -300,6 +304,17 @@
             label8.TabIndex = 26;
             label8.Text = "Дата та час доставки";
             // 
+            // labelHidden
+            // 
+            labelHidden.AutoSize = true;
+            labelHidden.BackColor = Color.Transparent;
+            labelHidden.Location = new Point(849, 456);
+            labelHidden.Name = "labelHidden";
+            labelHidden.Size = new Size(38, 15);
+            labelHidden.TabIndex = 27;
+            labelHidden.Text = "label9";
+            labelHidden.Visible = false;
+            // 
             // Form4
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -307,6 +322,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(886, 463);
+            Controls.Add(labelHidden);
             Controls.Add(label8);
             Controls.Add(label7);
             Controls.Add(textBox4);
@@ -359,5 +375,6 @@
         private Label label7;
         private Label label8;
         private PictureBox pictureBox3;
+        private Label labelHidden;
     }
 }

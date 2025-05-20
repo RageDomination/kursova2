@@ -29,10 +29,10 @@ namespace курсова2
                 TextAlign = ContentAlignment.MiddleCenter,
                 Dock = DockStyle.Fill
             };
-
+            this.ActiveControl = labelHidden;
             flowLayoutPanel1.Controls.Add(lblNoReviews);
             LoadReviews();
-            this.ActiveControl = label2;
+            this.ActiveControl = labelHidden;
         }
         private void LoadReviews()
         {

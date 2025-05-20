@@ -296,6 +296,7 @@
             // labelHidden
             // 
             labelHidden.AutoSize = true;
+            labelHidden.BackColor = Color.Transparent;
             labelHidden.Location = new Point(779, 439);
             labelHidden.Name = "labelHidden";
             labelHidden.Size = new Size(44, 15);

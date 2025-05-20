@@ -28,6 +28,7 @@ namespace курсова2
             dateTimePicker1.ShowUpDown = true;
             pictureBox1.Click += pictureBox1_Click;
             pictureBox2.Click += pictureBox2_Click;
+            this.ActiveControl = labelHidden;
         }
 
         private void LoadUserData()
@@ -309,11 +310,6 @@ VALUES
                 transaction.Rollback();
                 MessageBox.Show("Помилка при оформленні замовлення: " + ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

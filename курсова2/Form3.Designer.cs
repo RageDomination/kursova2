@@ -117,6 +117,7 @@
             // labelHidden
             // 
             labelHidden.AutoSize = true;
+            labelHidden.BackColor = Color.Transparent;
             labelHidden.ForeColor = SystemColors.ControlText;
             labelHidden.ImageAlign = ContentAlignment.MiddleRight;
             labelHidden.Location = new Point(881, 499);
