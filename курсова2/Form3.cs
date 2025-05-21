@@ -59,14 +59,15 @@ namespace курсова2
                                 int quantilityInCart = reader.GetInt32("quantility_in_cart");
 
                                 Image dishImage = null;
+
                                 if (!reader.IsDBNull(reader.GetOrdinal("image")))
                                 {
-                                    byte[] imgBytes = (byte[])reader["image"];
-                                    using (var ms = new MemoryStream(imgBytes))
+                                    string imagePath = reader.GetString("image");
+                                    if (!string.IsNullOrEmpty(imagePath) && File.Exists(imagePath))
                                     {
                                         try
                                         {
-                                            dishImage = Image.FromStream(ms);
+                                            dishImage = Image.FromFile(imagePath);
                                         }
                                         catch
                                         {
@@ -187,12 +188,14 @@ namespace курсова2
                     {
                         try
                         {
-                            Image img = Image.FromFile(ofd.FileName);
+                            string selectedPath = ofd.FileName;
+                            Image img = Image.FromFile(selectedPath);
                             pictureBox.Image = img;
+                            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                             pictureBox.BackColor = Color.Transparent;
                             pictureBox.BorderStyle = BorderStyle.None;
 
-                            SaveImageToDatabase(dishId, img);
+                            SaveImagePathToDatabase(dishId, selectedPath);
                         }
                         catch (Exception ex)
                         {
@@ -252,7 +255,7 @@ namespace курсова2
             }
         }
 
-        private void SaveImageToDatabase(int dishId, Image image)
+        private void SaveImagePathToDatabase(int dishId, string imagePath)
         {
             try
             {
@@ -260,25 +263,18 @@ namespace курсова2
                 {
                     connection.Open();
 
-                    byte[] imgBytes;
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-                        imgBytes = ms.ToArray();
-                    }
-
                     string updateQuery = @"UPDATE dishes SET image = @image WHERE dish_id = @dishId";
                     using (var updateCmd = new MySqlCommand(updateQuery, connection))
                     {
                         updateCmd.Parameters.AddWithValue("@dishId", dishId);
-                        updateCmd.Parameters.AddWithValue("@image", imgBytes);
+                        updateCmd.Parameters.AddWithValue("@image", imagePath);
                         updateCmd.ExecuteNonQuery();
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Помилка збереження зображення в базу: " + ex.Message);
+                MessageBox.Show("Помилка збереження шляху до зображення в базу: " + ex.Message);
             }
         }
 
@@ -308,6 +304,7 @@ namespace курсова2
             label2.Left = pictureBox1.Left - textSize.Width - padding;
             label2.Top = pictureBox1.Bottom - label2.Height;
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
             Form2 f2 = new Form2(userID, login);

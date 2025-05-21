@@ -54,10 +54,10 @@ namespace курсова2
             using var conn = Database.GetConnection();
             conn.Open();
             string query = @"
-                SELECT d.dish_id, d.dish_name, d.description, d.price, d.image, c.quantility
-                FROM cart c
-                JOIN dishes d ON c.dish_id = d.dish_id
-                WHERE c.user_id = @userID";
+        SELECT d.dish_id, d.dish_name, d.description, d.price, d.image, c.quantility
+        FROM cart c
+        JOIN dishes d ON c.dish_id = d.dish_id
+        WHERE c.user_id = @userID";
             using var cmd = new MySqlCommand(query, conn);
             cmd.Parameters.AddWithValue("@userID", userID);
             using var reader = cmd.ExecuteReader();
@@ -68,13 +68,24 @@ namespace курсова2
                 string description = reader.GetString("description");
                 decimal price = reader.GetDecimal("price");
                 int quantity = reader.GetInt32("quantility");
+
                 Image image = null;
                 if (!reader.IsDBNull(reader.GetOrdinal("image")))
                 {
-                    byte[] bytes = (byte[])reader["image"];
-                    using MemoryStream ms = new MemoryStream(bytes);
-                    image = Image.FromStream(ms);
+                    string imagePath = reader.GetString("image");
+                    if (!string.IsNullOrEmpty(imagePath) && File.Exists(imagePath))
+                    {
+                        try
+                        {
+                            image = Image.FromFile(imagePath);
+                        }
+                        catch
+                        {
+                            image = null;
+                        }
+                    }
                 }
+
                 var panel = CreateCartItemPanel(dishId, name, description, price, image, quantity);
                 flowLayoutPanel1.Controls.Add(panel);
                 total += price * quantity;

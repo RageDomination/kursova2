@@ -39,6 +39,7 @@
             flowLayoutPanel1 = new FlowLayoutPanel();
             label1 = new Label();
             label2 = new Label();
+            textBox1 = new TextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -132,7 +133,7 @@
             flowLayoutPanel1.BackColor = Color.DarkSeaGreen;
             flowLayoutPanel1.Cursor = Cursors.Hand;
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel1.Location = new Point(182, 103);
+            flowLayoutPanel1.Location = new Point(182, 107);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new Size(590, 354);
             flowLayoutPanel1.TabIndex = 25;
@@ -144,7 +145,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Times New Roman", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(343, 66);
+            label1.Location = new Point(342, 46);
             label1.Name = "label1";
             label1.Size = new Size(258, 22);
             label1.TabIndex = 27;
@@ -162,6 +163,14 @@
             label2.TabIndex = 28;
             label2.Text = "1";
             // 
+            // textBox1
+            // 
+            textBox1.Font = new Font("Times New Roman", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox1.Location = new Point(182, 79);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(590, 22);
+            textBox1.TabIndex = 29;
+            // 
             // Form3
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -169,6 +178,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(924, 513);
+            Controls.Add(textBox1);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
@@ -197,5 +207,6 @@
         private FlowLayoutPanel flowLayoutPanel2;
         private Label label2;
         private PictureBox pictureBox3;
+        private TextBox textBox1;
     }
 }
