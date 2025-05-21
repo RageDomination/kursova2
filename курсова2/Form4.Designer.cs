@@ -64,7 +64,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Times New Roman", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(82, 58);
+            label1.Location = new Point(28, 58);
             label1.Name = "label1";
             label1.Size = new Size(167, 22);
             label1.TabIndex = 1;
@@ -76,7 +76,7 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(82, 422);
+            label2.Location = new Point(28, 435);
             label2.Name = "label2";
             label2.Size = new Size(58, 19);
             label2.TabIndex = 2;
@@ -86,9 +86,9 @@
             // 
             flowLayoutPanel1.AutoScroll = true;
             flowLayoutPanel1.BackColor = Color.White;
-            flowLayoutPanel1.Location = new Point(82, 83);
+            flowLayoutPanel1.Location = new Point(28, 83);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(539, 322);
+            flowLayoutPanel1.Size = new Size(591, 349);
             flowLayoutPanel1.TabIndex = 3;
             // 
             // panel1

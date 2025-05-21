@@ -142,7 +142,7 @@ namespace курсова2
             Label lblQuantity = new Label
             {
                 Text = $"Кількість: {quantity}",
-                Font = new Font("Times New Roman", 10, FontStyle.Regular),
+                Font = new Font("Times New Roman", 11, FontStyle.Regular),
                 Location = new Point(160, 132),
                 AutoSize = true
             };
@@ -150,7 +150,7 @@ namespace курсова2
             Label lblSum = new Label
             {
                 Text = $"Сума: {price * quantity} грн",
-                Font = new Font("Times New Roman", 10, FontStyle.Regular),
+                Font = new Font("Times New Roman", 11, FontStyle.Regular),
                 Location = new Point(270, 132),
                 AutoSize = true
             };
@@ -158,7 +158,7 @@ namespace курсова2
             Button btnPlus = new Button
             {
                 Text = "+",
-                Font = new Font("Times New Roman", 10, FontStyle.Regular),
+                Font = new Font("Times New Roman", 11, FontStyle.Regular),
                 Size = new Size(30, 25),
                 Location = new Point(400, 127)
             };

@@ -17,7 +17,7 @@ namespace курсова2
             InitializeComponent();
             this.userID = userID;
             this.login = login;
-
+            this.textBox1.TextChanged += textBox1_TextChanged;
             this.button1.Click += button1_Click;
             this.Load += Form3_Load;
             this.pictureBox1.Click += pictureBox1_Click;
@@ -318,5 +318,34 @@ namespace курсова2
             form4.Show();
             this.Hide();
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            string filterText = textBox1.Text.Trim().ToLower();
+
+            foreach (Control ctrl in flowLayoutPanel1.Controls)
+            {
+                if (ctrl is Panel panel)
+                {
+                    string nameText = "";
+                    string descText = "";
+
+                    foreach (Control child in panel.Controls)
+                    {
+                        if (child is Label lbl)
+                        {
+                            if (lbl.Font.Bold)
+                                nameText = lbl.Text.ToLower();
+                            else if (lbl.Size.Width == 370 || lbl.Size.Height > 40)
+                                descText = lbl.Text.ToLower();
+                        }
+                    }
+
+                    bool matches = nameText.Contains(filterText) || descText.Contains(filterText);
+                    panel.Visible = string.IsNullOrWhiteSpace(filterText) || matches;
+                }
+            }
+        }
+
     }
 }
