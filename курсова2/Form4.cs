@@ -95,15 +95,81 @@ namespace курсова2
 
         private Panel CreateCartItemPanel(int dishId, string name, string description, decimal price, Image image, int quantity)
         {
-            Panel panel = new Panel { Width = 500, Height = 140, Margin = new Padding(10), BorderStyle = BorderStyle.FixedSingle };
-            PictureBox pic = new PictureBox { Image = image, SizeMode = PictureBoxSizeMode.Zoom, Location = new Point(10, 10), Size = new Size(100, 100) };
-            Label lblName = new Label { Text = name, Font = new Font("Segoe UI", 10, FontStyle.Bold), Location = new Point(120, 10), AutoSize = true };
-            Label lblDescription = new Label { Text = description, Location = new Point(120, 35), Size = new Size(250, 30) };
-            Label lblPrice = new Label { Text = $"Ціна: {price} грн", Location = new Point(120, 70), AutoSize = true };
-            Label lblQuantity = new Label { Text = $"Кількість: {quantity}", Location = new Point(120, 95), AutoSize = true };
-            Label lblSum = new Label { Text = $"Сума: {price * quantity} грн", Location = new Point(220, 95), AutoSize = true };
-            Button btnPlus = new Button { Text = "+", Size = new Size(30, 25), Location = new Point(350, 90) };
-            Button btnMinus = new Button { Text = "-", Size = new Size(30, 25), Location = new Point(390, 90) };
+            Panel panel = new Panel
+            {
+                Width = 550,
+                Height = 162,
+                Margin = new Padding(10),
+                BorderStyle = BorderStyle.FixedSingle,
+                BackColor = Color.White
+            };
+
+            PictureBox pic = new PictureBox
+            {
+                Image = image,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Location = new Point(10, 10),
+                Size = new Size(140, 140),
+                BackColor = image == null ? Color.LightGray : Color.Transparent,
+                BorderStyle = image == null ? BorderStyle.FixedSingle : BorderStyle.None
+            };
+
+            Label lblName = new Label
+            {
+                Text = name,
+                Font = new Font("Times New Roman", 14, FontStyle.Bold),
+                Location = new Point(160, 10),
+                AutoSize = true
+            };
+
+            Label lblDescription = new Label
+            {
+                Text = description,
+                Font = new Font("Times New Roman", 11, FontStyle.Regular),
+                Location = new Point(160, 40),
+                Size = new Size(370, 40),
+                AutoEllipsis = true
+            };
+
+            Label lblPrice = new Label
+            {
+                Text = $"Ціна: {price} грн",
+                Font = new Font("Times New Roman", 11, FontStyle.Regular),
+                Location = new Point(160, 112),
+                AutoSize = true
+            };
+
+            Label lblQuantity = new Label
+            {
+                Text = $"Кількість: {quantity}",
+                Font = new Font("Times New Roman", 10, FontStyle.Regular),
+                Location = new Point(160, 132),
+                AutoSize = true
+            };
+
+            Label lblSum = new Label
+            {
+                Text = $"Сума: {price * quantity} грн",
+                Font = new Font("Times New Roman", 10, FontStyle.Regular),
+                Location = new Point(270, 132),
+                AutoSize = true
+            };
+
+            Button btnPlus = new Button
+            {
+                Text = "+",
+                Font = new Font("Times New Roman", 10, FontStyle.Regular),
+                Size = new Size(30, 25),
+                Location = new Point(400, 127)
+            };
+
+            Button btnMinus = new Button
+            {
+                Text = "-",
+                Font = new Font("Times New Roman", 10, FontStyle.Regular),
+                Size = new Size(30, 25),
+                Location = new Point(440, 127)
+            };
 
             btnPlus.Click += (s, e) =>
             {
@@ -113,6 +179,7 @@ namespace курсова2
                 UpdateCartQuantity(dishId, quantity);
                 RecalculateTotal();
             };
+
             btnMinus.Click += (s, e) =>
             {
                 if (quantity > 1)
@@ -141,6 +208,7 @@ namespace курсова2
 
             return panel;
         }
+
 
         private void UpdateCartQuantity(int dishId, int quantity)
         {

@@ -106,7 +106,7 @@ namespace курсова2
             {
                 Size = new Size(140, 140),
                 Location = new Point(10, 10),
-                SizeMode = PictureBoxSizeMode.Zoom,
+                SizeMode = PictureBoxSizeMode.StretchImage,
                 BackColor = dishImage == null ? Color.LightGray : Color.Transparent,
                 BorderStyle = dishImage == null ? BorderStyle.FixedSingle : BorderStyle.None,
                 Image = dishImage
