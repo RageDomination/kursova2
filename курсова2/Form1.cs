@@ -14,7 +14,6 @@ namespace курсова2
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             checkBox1.CheckedChanged += checkBox1_CheckedChanged;
-            pictureBoxOff.Click += pictureBoxOff_Click;
         }
 
         private void pictureBoxOff_Click(object sender, EventArgs e)

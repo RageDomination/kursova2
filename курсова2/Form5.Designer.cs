@@ -56,7 +56,7 @@
             // 
             buttonAddReview.BackColor = Color.DarkSeaGreen;
             buttonAddReview.FlatStyle = FlatStyle.Popup;
-            buttonAddReview.Font = new Font("Times New Roman", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonAddReview.Font = new Font("Sylfaen", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             buttonAddReview.ForeColor = Color.White;
             buttonAddReview.Location = new Point(97, 490);
             buttonAddReview.Name = "buttonAddReview";
@@ -70,11 +70,11 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Sylfaen", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(57, 411);
+            label1.Location = new Point(43, 411);
             label1.Name = "label1";
-            label1.Size = new Size(300, 19);
+            label1.Size = new Size(343, 19);
             label1.TabIndex = 3;
             label1.Text = "Хочете залишити вiдгук? Залиште його тут.";
             // 

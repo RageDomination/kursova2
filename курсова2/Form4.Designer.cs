@@ -62,11 +62,11 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Times New Roman", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Font = new Font("Sylfaen", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(28, 58);
+            label1.Location = new Point(28, 55);
             label1.Name = "label1";
-            label1.Size = new Size(167, 22);
+            label1.Size = new Size(144, 22);
             label1.TabIndex = 1;
             label1.Text = "Кошик замовлень";
             // 
@@ -74,11 +74,11 @@
             // 
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Font = new Font("Sylfaen", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.White;
             label2.Location = new Point(28, 435);
             label2.Name = "label2";
-            label2.Size = new Size(58, 19);
+            label2.Size = new Size(67, 22);
             label2.TabIndex = 2;
             label2.Text = "Всього:";
             // 
@@ -126,8 +126,8 @@
             button2.BackColor = Color.DarkSeaGreen;
             button2.Cursor = Cursors.Hand;
             button2.FlatStyle = FlatStyle.Popup;
-            button2.Font = new Font("Times New Roman", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            button2.ForeColor = Color.White;
+            button2.Font = new Font("Sylfaen", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            button2.ForeColor = Color.Black;
             button2.Location = new Point(174, -1);
             button2.Name = "button2";
             button2.Size = new Size(127, 37);
@@ -140,8 +140,8 @@
             button1.BackColor = Color.DarkSeaGreen;
             button1.Cursor = Cursors.Hand;
             button1.FlatStyle = FlatStyle.Popup;
-            button1.Font = new Font("Times New Roman", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.ForeColor = Color.White;
+            button1.Font = new Font("Sylfaen", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            button1.ForeColor = Color.Black;
             button1.Location = new Point(53, -1);
             button1.Name = "button1";
             button1.Size = new Size(125, 37);
@@ -153,11 +153,11 @@
             // 
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Times New Roman", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Font = new Font("Sylfaen", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(643, 83);
+            label3.Location = new Point(661, 83);
             label3.Name = "label3";
-            label3.Size = new Size(231, 22);
+            label3.Size = new Size(202, 22);
             label3.TabIndex = 13;
             label3.Text = "Оформлення замовлення";
             // 
@@ -200,11 +200,11 @@
             // 
             label4.AutoSize = true;
             label4.BackColor = Color.Transparent;
-            label4.Font = new Font("Times New Roman", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Font = new Font("Sylfaen", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             label4.ForeColor = Color.White;
             label4.Location = new Point(716, 113);
             label4.Name = "label4";
-            label4.Size = new Size(84, 17);
+            label4.Size = new Size(85, 18);
             label4.TabIndex = 18;
             label4.Text = "Введіть ім'я";
             // 
@@ -212,11 +212,11 @@
             // 
             label5.AutoSize = true;
             label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Times New Roman", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Font = new Font("Sylfaen", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             label5.ForeColor = Color.White;
             label5.Location = new Point(702, 165);
             label5.Name = "label5";
-            label5.Size = new Size(116, 17);
+            label5.Size = new Size(120, 18);
             label5.TabIndex = 19;
             label5.Text = "Введіть прізвище";
             // 
@@ -224,11 +224,11 @@
             // 
             label6.AutoSize = true;
             label6.BackColor = Color.Transparent;
-            label6.Font = new Font("Times New Roman", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.Font = new Font("Sylfaen", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             label6.ForeColor = Color.White;
             label6.Location = new Point(702, 265);
             label6.Name = "label6";
-            label6.Size = new Size(124, 17);
+            label6.Size = new Size(127, 18);
             label6.TabIndex = 20;
             label6.Text = " Адреса доставки ";
             // 
@@ -237,7 +237,7 @@
             button3.BackColor = Color.DarkSeaGreen;
             button3.Cursor = Cursors.Hand;
             button3.FlatStyle = FlatStyle.Popup;
-            button3.Font = new Font("Times New Roman", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            button3.Font = new Font("Sylfaen", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             button3.ForeColor = Color.White;
             button3.Location = new Point(676, 408);
             button3.Name = "button3";
@@ -284,11 +284,11 @@
             // 
             label7.AutoSize = true;
             label7.BackColor = Color.Transparent;
-            label7.Font = new Font("Times New Roman", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.Font = new Font("Sylfaen", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             label7.ForeColor = Color.White;
             label7.Location = new Point(706, 215);
             label7.Name = "label7";
-            label7.Size = new Size(112, 17);
+            label7.Size = new Size(118, 18);
             label7.TabIndex = 25;
             label7.Text = "Номер телефону";
             // 
@@ -296,11 +296,11 @@
             // 
             label8.AutoSize = true;
             label8.BackColor = Color.Transparent;
-            label8.Font = new Font("Times New Roman", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.Font = new Font("Sylfaen", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             label8.ForeColor = Color.White;
             label8.Location = new Point(688, 313);
             label8.Name = "label8";
-            label8.Size = new Size(144, 17);
+            label8.Size = new Size(147, 18);
             label8.TabIndex = 26;
             label8.Text = "Дата та час доставки";
             // 

@@ -80,8 +80,8 @@
             button2.BackColor = Color.DarkSeaGreen;
             button2.Cursor = Cursors.Hand;
             button2.FlatStyle = FlatStyle.Popup;
-            button2.Font = new Font("Times New Roman", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            button2.ForeColor = Color.White;
+            button2.Font = new Font("Sylfaen", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            button2.ForeColor = Color.Black;
             button2.Location = new Point(173, -1);
             button2.Name = "button2";
             button2.Size = new Size(127, 37);
@@ -94,8 +94,8 @@
             button1.BackColor = Color.DarkSeaGreen;
             button1.Cursor = Cursors.Hand;
             button1.FlatStyle = FlatStyle.Popup;
-            button1.Font = new Font("Times New Roman", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.ForeColor = Color.White;
+            button1.Font = new Font("Sylfaen", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            button1.ForeColor = Color.Black;
             button1.Location = new Point(51, -1);
             button1.Name = "button1";
             button1.Size = new Size(125, 37);
@@ -143,11 +143,11 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Times New Roman", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Font = new Font("Sylfaen", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.White;
             label1.Location = new Point(342, 46);
             label1.Name = "label1";
-            label1.Size = new Size(258, 22);
+            label1.Size = new Size(274, 25);
             label1.TabIndex = 27;
             label1.Text = "Сформуйте своє замовлення";
             // 
