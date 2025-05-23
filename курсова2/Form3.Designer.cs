@@ -61,9 +61,9 @@
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(3, -1);
+            pictureBox3.Location = new Point(-1, -1);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(52, 40);
+            pictureBox3.Size = new Size(52, 37);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 29;
             pictureBox3.TabStop = false;
@@ -82,7 +82,7 @@
             button2.FlatStyle = FlatStyle.Popup;
             button2.Font = new Font("Times New Roman", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             button2.ForeColor = Color.White;
-            button2.Location = new Point(182, -1);
+            button2.Location = new Point(173, -1);
             button2.Name = "button2";
             button2.Size = new Size(127, 37);
             button2.TabIndex = 13;
@@ -96,7 +96,7 @@
             button1.FlatStyle = FlatStyle.Popup;
             button1.Font = new Font("Times New Roman", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(58, -1);
+            button1.Location = new Point(51, -1);
             button1.Name = "button1";
             button1.Size = new Size(125, 37);
             button1.TabIndex = 12;
