@@ -14,6 +14,8 @@ namespace курсова2
         private int? _editingReviewId = null;
         public Form5(int dishId, int userId)
         {
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             InitializeComponent();
             _dishId = dishId;
             _userId = userId;
@@ -141,7 +143,7 @@ namespace курсова2
             {
                 Width = FixedPanelWidth + 10,
                 Height = 90,
-                Margin = new Padding(0, 5, 0, 5),
+                Margin = new Padding(3, 5, 0, 5),
                 BackColor = Color.White,
                 BorderStyle = BorderStyle.FixedSingle,
                 AutoSize = false

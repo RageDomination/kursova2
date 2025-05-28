@@ -15,6 +15,8 @@ namespace курсова2
 
         public Form4(int userID, string login)
         {
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             InitializeComponent();
             this.userID = userID;
             this.login = login;

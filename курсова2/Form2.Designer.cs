@@ -132,7 +132,7 @@
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
             pictureBox3.Location = new Point(3, -1);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(52, 40);
+            pictureBox3.Size = new Size(50, 40);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 14;
             pictureBox3.TabStop = false;

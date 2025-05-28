@@ -14,6 +14,8 @@ namespace курсова2
 
         public Form3(int userID, string login)
         {
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             InitializeComponent();
             this.userID = userID;
             this.login = login;
@@ -21,6 +23,7 @@ namespace курсова2
             this.button1.Click += button1_Click;
             this.Load += Form3_Load;
             this.pictureBox1.Click += pictureBox1_Click;
+            textBox1.PlaceholderText = "Пошук за ключовими словами";
         }
 
         private void Form3_Load(object sender, EventArgs e)
